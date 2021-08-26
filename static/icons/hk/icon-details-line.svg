@@ -1,0 +1,6 @@
+<svg id="icon_details-line" data-name="icon/details-line" xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 30 22">
+  <path id="Path_1828" data-name="Path 1828" d="M30.125,6H3.875A1.855,1.855,0,0,0,2,7.833V26.167A1.855,1.855,0,0,0,3.875,28h26.25A1.855,1.855,0,0,0,32,26.167V7.833A1.855,1.855,0,0,0,30.125,6Zm0,20.167H3.875V7.833h26.25Z" transform="translate(-2 -6)" fill="#d15b4c"/>
+  <path id="Path_1829" data-name="Path 1829" d="M8.875,14.083H24.627a.969.969,0,0,0,.875-1.041A.969.969,0,0,0,24.627,12H8.875A.969.969,0,0,0,8,13.041.969.969,0,0,0,8.875,14.083Z" transform="translate(-1.751 -6.568)" fill="#d15b4c"/>
+  <path id="Path_1830" data-name="Path 1830" d="M8.875,18.083H24.627a1.057,1.057,0,0,0,0-2.083H8.875a1.057,1.057,0,0,0,0,2.083Z" transform="translate(-1.751 -6.947)" fill="#d15b4c"/>
+  <path id="Path_1831" data-name="Path 1831" d="M9.041,22.083H19.456a1.041,1.041,0,1,0,0-2.083H9.041a1.041,1.041,0,1,0,0,2.083Z" transform="translate(-2.75 -7.326)" fill="#d15b4c"/>
+</svg>

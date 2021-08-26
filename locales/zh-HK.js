@@ -1,0 +1,31 @@
+export default {
+  c: {
+    preview: "预览",
+    confirm: "确定",
+    cancel: "取消",
+    is_required: " 是必填的",
+  },
+
+  code: {
+    hong_kong_sar: "香港特别行政区",
+    australia: "澳大利亚",
+    canada: "加拿大",
+    france: "法国",
+    germany: "德国",
+    india: "印度",
+    indonesia: "印度尼西亚",
+    italy: "意大利",
+    japan: "日本",
+    korea: "韩国",
+    macau_sar: "澳门特别行政区",
+    malaysia: "马来西亚",
+    new_zealand: "新西兰",
+    philippiness: "菲律宾",
+    russia: "俄罗斯",
+    singapore: "新加坡",
+    taiwan: "台湾",
+    thailand: "泰国",
+    uk: "英国",
+    usa: "美国",
+  },
+};

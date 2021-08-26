@@ -1,0 +1,6 @@
+<svg id="icon_calendar-event" data-name="icon/calendar-event" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <path id="Path_5" data-name="Path 5" d="M1.125,4.612V15.821A1.123,1.123,0,0,0,2.25,16.942h13.5a1.123,1.123,0,0,0,1.125-1.121V4.612ZM2.25,1.25A2.246,2.246,0,0,0,0,3.492V15.821a2.246,2.246,0,0,0,2.25,2.242h13.5A2.246,2.246,0,0,0,18,15.821V3.492A2.246,2.246,0,0,0,15.75,1.25Z" transform="translate(5 4.938)" fill="#d15b4c" fill-rule="evenodd"/>
+  <path id="Path_6" data-name="Path 6" d="M4.294,0a.57.57,0,0,1,.544.594v.594a.57.57,0,0,1-.544.594.57.57,0,0,1-.544-.594V.594A.57.57,0,0,1,4.294,0Zm9.788,0a.57.57,0,0,1,.544.594v.594a.546.546,0,1,1-1.087,0V.594A.57.57,0,0,1,14.081,0Z" transform="translate(4.813 5)" fill="#d15b4c" fill-rule="evenodd"/>
+  <path id="Path_7" data-name="Path 7" d="M14.344,7.5h1.188a.594.594,0,0,1,.594.594V9.281a.594.594,0,0,1-.594.594H14.344a.594.594,0,0,1-.594-.594V8.094A.594.594,0,0,1,14.344,7.5Z" transform="translate(3.527 4.196)" fill="#d15b4c"/>
+  <path id="Path_2209" data-name="Path 2209" d="M0,0H28V28H0Z" fill="none"/>
+</svg>
