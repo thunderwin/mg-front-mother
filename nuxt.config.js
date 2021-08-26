@@ -261,7 +261,7 @@ export default {
       target:
         process.env.NODE_ENV === "development"
           ? "http://localhost:9000/"
-          : "https://api.tokwork.com/",
+          : "https://gudao-api.tokwork.com/",
       // target: "https://api.tokwork.com/",
       // changeOrigin: true,
       pathRewrite: { "^/api/": "" },
