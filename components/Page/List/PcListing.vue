@@ -1,37 +1,38 @@
 <template>
   <!-- {{ category }} -->
-  <section class="section container">
+  <section class="section">
     <!-- {{ categorys }} -->
+    <div class="container">
+      <div class="columns">
+        <div class="column is-one-fifth">
+          <!-- <BaseChildCategoryTree :categorys="categorys" /> -->
 
-    <div class="columns">
-      <div class="column is-one-fifth">
-        <!-- <BaseChildCategoryTree :categorys="categorys" /> -->
+          <!-- <PageListChosenFilter :filter="filter" /> -->
 
-        <!-- <PageListChosenFilter :filter="filter" /> -->
+          <BaseFilter
+            v-if="products.aggregations"
+            :x="products.aggregations"
+            :filter="filter"
+            @filterResult="filterResult"
+          />
+        </div>
 
-        <BaseFilter
-          v-if="products.aggregations"
-          :x="products.aggregations"
-          :filter="filter"
-          @filterResult="filterResult"
-        />
-      </div>
+        <div class="column">
+          <!-- <BaseChildCategory :categorys="categorys" style="margin-bottom: 2rem" /> -->
+          <van-grid
+            :border="false"
+            :center="false"
+            :gutter="20"
+            :clickable="true"
+            :column-num="4"
+          >
+            <van-grid-item v-for="(x, index) in products.items" :key="index">
+              <BaseProduct class="shadow" :x="x" />
+            </van-grid-item>
+          </van-grid>
 
-      <div class="column">
-        <!-- <BaseChildCategory :categorys="categorys" style="margin-bottom: 2rem" /> -->
-        <van-grid
-          :border="false"
-          :center="false"
-          :gutter="20"
-          :clickable="true"
-          :column-num="4"
-        >
-          <van-grid-item v-for="(x, index) in products.items" :key="index">
-            <BaseProduct class="shadow" :x="x" />
-          </van-grid-item>
-        </van-grid>
-
-        <PageListPagination :pageInfo="products.page_info" />
+          <PageListPagination :pageInfo="products.page_info" />
+        </div>
       </div>
     </div>
   </section>

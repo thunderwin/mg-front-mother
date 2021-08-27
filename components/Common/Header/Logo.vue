@@ -7,7 +7,7 @@
       <van-image
         :src="$store.state.S.logo"
         :width="$device.isMobileOrTablet ? '101px' : '168px'"
-        style="max-height: 50px"
+        style="max-height: 46px"
       >
         <template v-slot:loading>
           <van-loading type="spinner" size="20" />
