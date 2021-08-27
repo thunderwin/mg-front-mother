@@ -32,10 +32,11 @@
           <li v-if="Math.abs(x - pageInfo.current_page) < 3">
             <a
               @click="click(x)"
-              class="pagination-link"
+              class="pagination-link has-text-white"
+              :style="{
+                backgroundColor: $store.state.S.mainButtonColor,
+              }"
               :class="x === pageInfo.current_page ? 'is-current' : ''"
-              aria-label="Page 46"
-              aria-current="page"
               >{{ x }}</a
             >
           </li>
