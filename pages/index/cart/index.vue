@@ -122,6 +122,8 @@ export default {
       let cartId = cartIds[code];
 
       this.cartId = cartId;
+
+      if (!cartId) return;
       this.cart = await this.$store.dispatch("cart/fetchCart", {
         cartId: this.cartId,
       });

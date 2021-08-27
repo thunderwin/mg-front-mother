@@ -175,6 +175,8 @@ export const actions = {
     console.log("%c cartId", "color:green;font-weight:bold");
     console.log(JSON.stringify(cartId));
 
+    if (!cartId) return false;
+
     let { cart } = await this.$axios.post("/api/checkout/cart", {
       cartId: cartId,
     });

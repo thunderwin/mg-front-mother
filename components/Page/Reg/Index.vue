@@ -23,6 +23,9 @@
         class="button is-black is-capitalized"
         style="border-radius: 4px"
         @click="reg"
+        :style="{
+          backgroundColor: $store.state.S.mainButtonColor,
+        }"
       >
         {{ $t("c.register") }}
       </button>

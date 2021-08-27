@@ -17,6 +17,9 @@
         <button
           :class="isLoading ? 'is-loading' : ''"
           class="button is-black"
+          :style="{
+            backgroundColor: $store.state.S.mainButtonColor,
+          }"
           @click="submit"
         >
           {{ $t("c.login") }}

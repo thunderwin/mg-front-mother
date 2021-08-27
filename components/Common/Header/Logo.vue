@@ -5,7 +5,7 @@
       style="display: flex; justify-content: left; min-height: 50px"
     >
       <van-image
-        :src="c.secure_base_media_url + 'logo/' + c.header_logo_src"
+        :src="$store.state.S.logo"
         :width="$device.isMobileOrTablet ? '101px' : '168px'"
         style="max-height: 50px"
       >
@@ -18,13 +18,7 @@
 </template>
 
 <script>
-export default {
-  computed: {
-    c() {
-      return this.$store.state.C;
-    },
-  },
-};
+export default {};
 </script>
 
 <style lang="scss"></style>
