@@ -3,18 +3,10 @@
     <div class="has-text-centered is-size-4 mb-4" style="font-weight: bold">
       {{ $t("c.creat_user_account") }}
     </div>
-    <!-- <h2 class="subtitle has-text-centered">欢迎加入</h2> -->
 
-    <!-- <p style="font-size: 14px; color: #707070; margin-bottom: 20px">
-      {{ $t("c.reg_text") }}
-    </p> -->
-
-    <BaseFormBuilder
-      style="font-size: 1rem; font-weight: bold"
-      name="register"
-      :atts="atts"
-      @submit="submit"
-    />
+    <client-only>
+      <BaseFormBuilder style="" name="register" :atts="atts" @submit="submit" />
+    </client-only>
 
     <!-- <AgreeTerm /> -->
 
@@ -37,10 +29,6 @@
 // import AgreeTerm from "@/components/common/userEdit/agreeTerm.vue";
 
 export default {
-  data() {
-    return {};
-  },
-
   computed: {
     atts() {
       return [
