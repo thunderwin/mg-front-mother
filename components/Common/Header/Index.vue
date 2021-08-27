@@ -4,10 +4,8 @@
       <div class="message-body">You are offline</div>
     </article>
 
-    <client-only>
-      <CommonHeaderMobheader v-if="$device.isMobileOrTablet" />
-      <CommonHeaderPcHeader v-else />
-    </client-only>
+    <CommonHeaderMobheader v-if="$device.isMobileOrTablet" />
+    <CommonHeaderPcHeader v-else />
   </div>
 </template>
 

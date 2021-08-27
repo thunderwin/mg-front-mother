@@ -258,7 +258,9 @@
     >
       <div class="">
         <div class="is-size-4 has-text-centered">Leave review</div>
-        <DetailReviewAddReview />
+        <client-only>
+          <DetailReviewAddReview />
+        </client-only>
       </div>
     </section>
 
