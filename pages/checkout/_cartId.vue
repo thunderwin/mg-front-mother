@@ -29,7 +29,7 @@
             </button>
           </div>
         </div>
-        <div style="" class="column">
+        <div style="padding: 0.75rem 1rem" class="column">
           <CheckoutSummary />
         </div>
       </div>

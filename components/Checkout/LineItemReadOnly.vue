@@ -1,38 +1,48 @@
 <template>
   <div
     class="wrappeprr shadow"
-    style="width: 100%; margin-bottom: 2rem; padding: 1rem 1.5rem"
+    style="width: 100%; margin-bottom: 1rem; padding: 1rem"
   >
     <!-- {{ x.list }} -->
-    <div
-      class="checkout_line_item"
-      style="
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        padding: auto 1rem;
-        align-items: center;
-      "
-    >
+    <div class="checkout_line_item" style="width: 100%; align-items: center">
       <van-card
         style="background-color: #fff !important; padding: 0 !important"
         :title="item.product.name"
-        :thumb="
-          item.product.media_gallery.length > 0
-            ? item.product.media_gallery[0].url
-            : ''
-        "
+        :thumb="thumb"
         :style="'100%'"
       >
         <template #tags>
+          <!-- // 自定义选项 -->
           <div
-            v-for="(x, indx) in item.customizable_options"
+            v-for="(x, indx) in item.product.options"
             :key="indx"
-            style="color: #707070"
+            style="color: #707070; magrin-top: 0.5rem"
+            class="my-flex"
           >
-            <span>{{ x.label }}:</span>
-            <span style="">{{ x.values[0].label || x.values[0].value }}</span>
+            <div>{{ x.title }}:</div>
+            <div v-for="(z, zindex) in x.value" :key="zindex" style="">
+              {{ z.title }}
+            </div>
           </div>
+
+          <!-- // 数量和价格 -->
+          <div class="my-flex" style="">
+            <div class="qty" style="font-size: 1rem">
+              {{ $t("c.qty") }} : {{ item.quantity }}
+            </div>
+            <div style="font-size: 1.3rem; flex-shrink: 0" class="pricr">
+              <span>{{
+                item.prices.price.currency === "USD"
+                  ? "$"
+                  : item.prices.price.currency
+              }}</span>
+              <span>{{
+                (item.prices.price.value * item.quantity).toFixed(2)
+              }}</span>
+            </div>
+          </div>
+
+          <!-- // 可配置产品 -->
           <div
             v-if="
               item.configurable_options && item.configurable_options.length > 0
@@ -60,6 +70,15 @@ export default {
   computed: {
     item() {
       return this.x;
+    },
+    thumb() {
+      if (!!this.x.product.imglist) {
+        let imgs = JSON.parse(this.x.product.imglist);
+        return imgs[0].url;
+      }
+      return this.x.product.media_gallery.length > 0
+        ? this.x.product.media_gallery[0].url
+        : "";
     },
     formatedCusAtts() {
       return this.item.customizable_options.map((x) => {

@@ -1,6 +1,12 @@
 <template>
   <div class="mob-cart-wrapper">
-    <div class="is-size-4" style="padding: 1rem">My Cart</div>
+    <div class="is-size-4" style="padding: 1rem">
+      <span>My Cart</span>
+      <span style="font-weight: normal">
+        ( {{ cart.total_quantity }} {{ $t("c.items") }} )</span
+      >
+    </div>
+
     <div v-if="cart && cart.items.length > 0">
       <CartPromo />
 
@@ -16,15 +22,18 @@
         @reloadCart="reloadCart"
         style="padding: 1rem"
         :cart="cart"
-        :cartId="cartId"
+        :cartId="cart.id"
       />
 
       <CartSummy style="padding: 1rem" :cart="cart" />
 
+      <!-- <CartGoCheckoutButtons v-if="$device.isDesktop" /> -->
+
+      <!-- 都用同一个 -->
+
       <div class="spacer"></div>
 
       <van-goods-action
-        v-if="$device.isMobileOrTablet"
         style="overflow: hidden; width: 100%; z-index: 10000"
         class="van-hairline--top bg-white"
       >
@@ -42,17 +51,32 @@
 
 <script>
 export default {
+  data() {
+    return {
+      cart: "",
+    };
+  },
   computed: {
-    cart() {
-      let code = this.$i18n.locale;
-      let carts = this.$store.getters["cart/cart"](code);
-      return carts;
-    },
-    cartId() {
-      let code = this.$i18n.locale;
-      let cartIds = this.$store.state.cart.cartId;
-      return cartIds[code];
-    },
+    // cart: {
+    //   get() {
+    //     let code = this.$i18n.locale;
+    //     let carts = this.$store.getters["cart/cart"](code);
+    //     return carts;
+    //   },
+    //   set(v) {
+    //     return;
+    //   },
+    // },
+    // cartId() {
+    //   let code = this.$i18n.locale;
+    //   let cartIds = this.$store.state.cart.cartId;
+    //   return cartIds[code];
+    // },
+  },
+
+  beforeMount() {
+    let code = this.$i18n.locale;
+    this.cart = this.$store.getters["cart/cart"](code);
   },
 
   methods: {

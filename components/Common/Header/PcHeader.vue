@@ -47,7 +47,7 @@
           </div>
 
           <div class="right-header has-text-weight-bold is-capitalized my-flex">
-            <nuxt-link class="" :to="localePath('/cart')">
+            <a class="navbar-item" @click="$store.commit('setCartPopup', true)">
               <div class="my-flex" style="position: relative">
                 <div class="van-info has-text-white">
                   {{ cartQty }}
@@ -59,7 +59,7 @@
                   :color="$store.state.S.mainButtonColor"
                 />
               </div>
-            </nuxt-link>
+            </a>
           </div>
         </div>
       </div>
@@ -107,6 +107,19 @@
         </div> -->
         </div>
       </nav>
+
+      <client-only>
+        <van-popup
+          v-model="showShoppingCart"
+          class=""
+          closeable
+          :duration="0.2"
+          :position="'right'"
+          :style="{ height: '100%', width: '380px' }"
+        >
+          <CheckoutMobCartPopup />
+        </van-popup>
+      </client-only>
     </div>
   </div>
 </template>
@@ -120,6 +133,14 @@ export default {
     },
     menu() {
       return this.$store.state.menu;
+    },
+    showShoppingCart: {
+      set(e) {
+        this.$store.commit("setCartPopup", e);
+      },
+      get() {
+        return this.$store.getters["showCart"];
+      },
     },
   },
 };

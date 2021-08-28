@@ -11,7 +11,7 @@
     </div>
 
     <CartCoupon :cart="cart" :cartId="cartId" />
-    <CartSummy :cart="cart" />
+    <CartSummy style="margin-top: 1rem" :cart="cart" />
   </div>
 </template>
 

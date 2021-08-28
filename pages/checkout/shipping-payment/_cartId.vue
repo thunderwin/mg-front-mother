@@ -32,7 +32,7 @@
             </button>
           </div>
         </div>
-        <div class="column">
+        <div class="column" style="padding: 0.75rem 1rem">
           <CheckoutSummary />
         </div>
       </div>

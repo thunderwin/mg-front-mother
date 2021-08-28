@@ -41,7 +41,7 @@
               <span class="is-size-6"> {{ x.review_count }} </span>
             </div>
 
-            <div class="price-sum has-text-dark">
+            <div class="price-sum has-text-dark" style="margin-top: 0.2rem">
               <BaseShowItemPrice
                 v-if="x.price_range"
                 :fontSize="6"

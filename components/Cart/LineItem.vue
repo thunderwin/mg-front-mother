@@ -24,12 +24,28 @@
           :style="{ width: mob ? '100%' : '' }"
         >
           <template #tags>
-            <!-- {{ item }} -->
-            <div v-for="(x, indx) in item.customizable_options" :key="indx">
-              <span class="is-capitalized">{{ x.label }}:</span>
-              <span style="" class="is-uppercase">{{
-                x.values[0].label || x.values[0].value
-              }}</span>
+            <!-- 选项-->
+            <div
+              v-for="(x, indx) in item.product.options"
+              :key="indx"
+              style="color: #707070"
+              class="my-flex"
+            >
+              <div>{{ x.title }}:</div>
+              <div v-for="(z, zindex) in x.value" :key="zindex" style="">
+                {{ z.title }}
+              </div>
+            </div>
+
+            <!-- // 数量和价格 -->
+            <div class="my-flex" style="margin-top: 1rem">
+              <div class="qty" style="font-size: 1rem">
+                {{ $t("c.qty") }} : {{ item.quantity }}
+              </div>
+              <div style="flex-shrink: 0" class="pricr">
+                <span>{{ currency }}</span>
+                <span>{{ item.prices.price.value.toFixed(2) }}</span>
+              </div>
             </div>
 
             <div
@@ -46,13 +62,13 @@
             </div>
           </template>
 
-          <template v-if="$device.isMobileOrTablet" #footer>
+          <template #footer>
             <div class="my-flex" style="margin-top: 1rem">
               <div v-if="simpleItem" class="qty" style="font-size: 1rem">
                 {{ $t("c.qty") }} : {{ item.quantity }}
               </div>
               <div style="font-size: 1.3rem; flex-shrink: 0" class="pricr">
-                {{ item.prices.price.currency }}
+                {{ currency }}
                 {{ (item.prices.price.value * item.quantity).toFixed(2) }}
               </div>
 
@@ -190,6 +206,11 @@ export default {
       return this.x;
     },
 
+    currency() {
+      return this.item.prices.price.currency === "USD"
+        ? "$"
+        : this.item.prices.price.currency;
+    },
     thumb() {
       if (!!this.x.product.imglist) {
         let imgs = JSON.parse(this.x.product.imglist);
@@ -250,8 +271,6 @@ export default {
 
 <style lang="scss">
 .checkout_line_item .van-card__title {
-  font-size: 1.1rem;
-  line-height: 1.1rem;
   overflow: inherit;
 }
 </style>

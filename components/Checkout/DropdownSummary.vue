@@ -30,7 +30,7 @@
           </div>
         </template>
 
-        <CheckoutSummary />
+        <CheckoutSummary style="" />
       </van-collapse-item>
     </van-collapse>
   </div>

@@ -9,7 +9,7 @@
       style="justify-content: flex-start; padding: 0"
       class="price-center my-flex"
     >
-      <div :class="'is-size-' + fontSize" style="">
+      <div style="margin-right: 0.2rem" :class="'is-size-' + fontSize">
         {{ curr }}
       </div>
 
