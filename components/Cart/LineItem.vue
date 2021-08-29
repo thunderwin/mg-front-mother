@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div class="wrappeprr" style="width: 100%; padding: 1rem">
+    <div class="wrappeprr" style="width: 100%; padding: 0.5rem 1rem">
       <div
         class="checkout_line_item"
         style="
