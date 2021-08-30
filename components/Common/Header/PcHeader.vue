@@ -231,6 +231,7 @@ export default {
 .navbar {
   background-color: transparent;
 }
+
 .dropdown-menu {
   padding-top: 0 !important;
 }
