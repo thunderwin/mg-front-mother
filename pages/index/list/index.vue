@@ -9,11 +9,11 @@
     </section>
 
     <div v-else class="has-product">
-      <!-- <PageListSorting
+      <PageListSorting
         v-if="$device.isDesktop"
         :x="products"
         :sort="productsPayload.sort"
-      /> -->
+      />
 
       <PageListPcListing
         v-if="$device.isDesktop"

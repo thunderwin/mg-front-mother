@@ -64,12 +64,59 @@
         </div>
       </div>
 
-      <nav
+      <!-- {{ menu }} -->
+
+      <div class="dropdown is-hoverable van-hairline--top" style="width: 100%">
+        <div class="dropdown-trigger my-flex" style="margin: 0 auto">
+          <div
+            v-for="(x, index) in menu"
+            :key="index"
+            class="navbar-item"
+            :class="x.children.length > 0 ? '' : ''"
+            @mouseover="mouseOver(index)"
+          >
+            <nuxt-link
+              :to="localePath('/list') + '?category_id=' + x.id"
+              class="navbar-link is-size-6 is-bold"
+              style="font-weight: bold"
+            >
+              {{ x.name }}
+            </nuxt-link>
+          </div>
+        </div>
+
+        <div class="dropdown-menu" role="menu" style="width: 100%">
+          <div class="dropdown-content">
+            <div class="container my-flex">
+              <div class="sub-categoryss">
+                <!-- {{ showMenus }} -->
+                <div
+                  class="is-capitalized"
+                  v-if="showMenus.children.length > 0"
+                >
+                  <nuxt-link
+                    v-for="(y, yindex) in showMenus.children"
+                    :key="yindex"
+                    :to="localePath('/list') + '?category_id=' + y.id"
+                    class="navbar-item navbar-link"
+                  >
+                    {{ y.name }}
+                  </nuxt-link>
+                </div>
+              </div>
+              <div class="hot-items">
+                <BaseProductSwiperRow :products="showItems.items" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <nav
         class="navbar container van-hairline--top"
         role="navigation"
         aria-label="main navigation"
       >
-        <!-- {{ menu }} -->
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="my-flex" style="margin: 0 auto">
             <div
@@ -102,11 +149,9 @@
             </div>
           </div>
 
-          <!-- <div class="navbar-end">
-          <div class="navbar-item"></div>
-        </div> -->
+
         </div>
-      </nav>
+      </nav> -->
 
       <client-only>
         <van-popup
@@ -126,7 +171,21 @@
 
 <script>
 export default {
+  data() {
+    return {
+      showIndex: 0,
+    };
+  },
+
   computed: {
+    showItems() {
+      return this.menu[this.showIndex].products;
+    },
+
+    showMenus() {
+      return this.menu[this.showIndex];
+    },
+
     cartQty() {
       let code = this.$i18n.locale;
       return this.$store.state.cart.cartQty[code];
@@ -141,6 +200,13 @@ export default {
       get() {
         return this.$store.getters["showCart"];
       },
+    },
+  },
+  methods: {
+    mouseOver(e) {
+      console.log("%c e", "color:green;font-weight:bold");
+      console.log(JSON.stringify(e));
+      this.showIndex = e;
     },
   },
 };
@@ -164,5 +230,8 @@ export default {
 
 .navbar {
   background-color: transparent;
+}
+.dropdown-menu {
+  padding-top: 0 !important;
 }
 </style>

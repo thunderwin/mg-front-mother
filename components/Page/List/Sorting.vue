@@ -27,7 +27,7 @@
             type="select"
             validation="required"
             :options="x.sort_fields.options"
-            class="is-medium"
+            class=""
             @input="change"
           />
         </div>

@@ -1,6 +1,7 @@
 <template>
   <div class="product-all">
     <div class="">
+      <!-- {{ x.imglist }} -->
       <nuxt-link :to="localePath('/p') + '/' + x.sku">
         <van-image fit="cover" :src="img" />
 
@@ -65,13 +66,18 @@ export default {
   computed: {
     img() {
       if (!!this.x.imglist) {
-        let imgs = JSON.parse(this.x.imglist);
+        try {
+          let imgs = JSON.parse(this.x.imglist);
+          if (imgs.length > 0) {
+            return imgs[0].url;
+          }
+        } catch (error) {
+          console.log("%c 转化失败", "color:green;font-weight:bold");
+          console.log(JSON.stringify(error));
 
-        if (imgs.length > 0) {
-          return imgs[0].url;
+          return this.x.image.url;
         }
       }
-      return this.x.image.url;
     },
   },
 };

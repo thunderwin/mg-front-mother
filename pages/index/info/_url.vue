@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="my-cms">
     <section class="section">
       <div class="container">
-        <div class="is-size-3">{{ r.title }}</div>
+        <h2 class="is-size-3">{{ r.title }}</h2>
         <div class="is-size-6" v-html="r.content"></div>
       </div>
     </section>
@@ -35,4 +35,15 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.my-cms {
+  h2 {
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-top: 1rem;
+  }
+  p {
+    margin-top: 0.5rem;
+  }
+}
+</style>
