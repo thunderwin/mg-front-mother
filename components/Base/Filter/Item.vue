@@ -12,7 +12,7 @@
       <li class="each-one" v-for="(option, index) in x.options" :key="index">
         <a style="">
           <label
-            class="checkbox"
+            class="checkbox is-capitalized"
             style="width: 100%; line-height: 1.75rem; margin: 0 1rem"
           >
             <input

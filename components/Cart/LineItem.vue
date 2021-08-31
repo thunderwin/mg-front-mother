@@ -11,7 +11,7 @@
           align-items: center;
         "
       >
-        <!-- {{ x.product.imglist }} -->
+        <!-- {{ x.product }} -->
 
         <van-card
           style="
@@ -25,26 +25,37 @@
         >
           <template #tags>
             <!-- 选项-->
-            <div
-              v-for="(x, indx) in item.product.options"
-              :key="indx"
-              style="color: #707070"
-              class="my-flex"
-            >
-              <div>{{ x.title }}:</div>
-              <div v-for="(z, zindex) in x.value" :key="zindex" style="">
-                {{ z.title }}
+            <div class="customizable_options">
+              <div
+                v-for="(x, indx) in item.customizable_options"
+                :key="indx"
+                style="color: #707070"
+                class="my-flex"
+              >
+                <div class="is-capitalized">{{ x.label }}:</div>
+                <div
+                  class="is-capitalized"
+                  v-for="(z, zindex) in x.values"
+                  :key="zindex"
+                  style=""
+                >
+                  {{ z.label }}
+                </div>
               </div>
             </div>
 
             <!-- // 数量和价格 -->
-            <div class="my-flex" style="margin-top: 1rem">
-              <div class="qty" style="font-size: 1rem">
-                {{ $t("c.qty") }} : {{ item.quantity }}
-              </div>
-              <div style="flex-shrink: 0" class="pricr">
-                <span>{{ currency }}</span>
-                <span>{{ item.prices.price.value.toFixed(2) }}</span>
+            <div class="my-flex" style="justify-content: flex-end">
+              <div style="font-size: 1.3rem; flex-shrink: 0" class="pricr">
+                <span>{{
+                  item.prices.price.currency === "USD"
+                    ? "$"
+                    : item.prices.price.currency
+                }}</span>
+                <span
+                  >{{ item.prices.price.value.toFixed(2) }}
+                  <span class="has-text-grey">x {{ item.quantity }}</span>
+                </span>
               </div>
             </div>
 
@@ -80,13 +91,15 @@
               @click="edit(item.id)"
             /> -->
 
-              <button v-if="!simpleItem" class="button is-light">
-                <van-icon
-                  size="1rem"
-                  style="cursor: pointer"
-                  name="delete-o"
-                  @click="removeItem(item.id)"
-                />
+              <!-- {{ item }} -->
+
+              <button
+                v-if="!simpleItem"
+                class="button is-light"
+                :class="isLoading ? 'is-loading' : ''"
+                @click="removeItem(item.id)"
+              >
+                <van-icon size="1rem" style="cursor: pointer" name="delete-o" />
               </button>
 
               <van-stepper
@@ -238,6 +251,8 @@ export default {
       qty: 0,
       showEdit: false,
       editItem: "",
+
+      isLoading: false,
     };
   },
   methods: {
@@ -256,7 +271,9 @@ export default {
     }, 1000),
 
     removeItem(id) {
+      this.isLoading = true;
       this.$store.dispatch("cart/removeItemFromCart", { cart_item_id: id });
+      this.isLoading = false;
     },
 
     addItem(id, qty) {

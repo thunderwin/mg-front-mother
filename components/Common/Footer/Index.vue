@@ -173,13 +173,14 @@ export default {
           label: `About ${this.$store.state.domain}`,
           code: "about-us",
         },
-        {
-          label: "Social Responsibility",
-          code: "social-responsibility",
-        },
+
         {
           label: "Fashion Blogger",
           code: "fashion-blogger",
+        },
+        {
+          label: "Contact us",
+          code: "contact-us",
         },
       ],
 
@@ -193,8 +194,8 @@ export default {
           code: "Shipping Info",
         },
         {
-          label: "Returns",
-          code: "Returns",
+          label: "Return & refund",
+          code: "customer-service",
         },
       ],
       staticMenu3: [

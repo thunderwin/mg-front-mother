@@ -162,7 +162,7 @@
           :position="'right'"
           :style="{ height: '100%', width: '380px' }"
         >
-          <CheckoutMobCartPopup />
+          <CartPopupCart />
         </van-popup>
       </client-only>
     </div>

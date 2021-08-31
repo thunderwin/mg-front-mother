@@ -18,12 +18,7 @@
         <CartLineItem :x="items"></CartLineItem>
       </div>
 
-      <CartCoupon
-        @reloadCart="reloadCart"
-        style="padding: 1rem"
-        :cart="cart"
-        :cartId="cart.id"
-      />
+      <CartCoupon style="padding: 1rem" :cart="cart" :cartId="cart.id" />
 
       <CartSummy style="padding: 1rem" :cart="cart" />
 
@@ -51,22 +46,17 @@
 
 <script>
 export default {
-  data() {
-    return {
-      cart: "",
-    };
-  },
   computed: {
-    // cart: {
-    //   get() {
-    //     let code = this.$i18n.locale;
-    //     let carts = this.$store.getters["cart/cart"](code);
-    //     return carts;
-    //   },
-    //   set(v) {
-    //     return;
-    //   },
-    // },
+    cart: {
+      get() {
+        let code = this.$i18n.locale;
+        let carts = this.$store.getters["cart/cart"](code);
+        return carts;
+      },
+      set(v) {
+        return;
+      },
+    },
     // cartId() {
     //   let code = this.$i18n.locale;
     //   let cartIds = this.$store.state.cart.cartId;
@@ -80,14 +70,13 @@ export default {
   },
 
   methods: {
-    async reloadCart() {
-      console.log("%c 重新load购物车", "color:green;font-weight:bold");
-      this.cart = await this.$store.dispatch("cart/fetchCart", {
-        cartId: this.cart.id,
-      });
+    // async reloadCart() {
+    //   console.log("%c 重新load购物车", "color:green;font-weight:bold");
+    //   this.cart = await this.$store.dispatch("cart/fetchCart", {
+    //     cartId: this.cart.id,
+    //   });
 
-      // this.getShoppingCartCross();
-    },
+    // },
     goCheckout() {
       this.$store.commit("setCartPopup", false);
 

@@ -137,7 +137,7 @@
         :position="'bottom'"
         :style="{ height: '90%' }"
       >
-        <CheckoutMobCartPopup />
+        <CartPopupCart />
       </van-popup>
     </client-only>
   </div>
