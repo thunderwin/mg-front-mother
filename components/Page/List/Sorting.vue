@@ -1,19 +1,20 @@
 <template>
   <div class="sorter">
-    <div class="shadow" style="padding: 0.5rem 2rem">
-      <!-- {{ x }} -->
+    <client-only>
+      <div class="shadow" style="padding: 0.5rem 2rem">
+        <!-- {{ x }} -->
 
-      <div class="container my-flex" style="padding: 0 1rem">
-        <div class="result-summay">
-          1 - {{ itemNumber }} of over {{ x.total_count }} results
-        </div>
+        <div class="container my-flex" style="padding: 0 1rem">
+          <div class="result-summay">
+            1 - {{ itemNumber }} of over {{ x.total_count }} results
+          </div>
 
-        <!-- {{ sort }} -->
+          <!-- {{ sort }} -->
 
-        <div class="sort my-flex">
-          <span style="margin-right: 1rem">Sort by</span>
-          <div class="">
-            <!-- <select @change="change">
+          <div class="sort my-flex">
+            <span style="margin-right: 1rem">Sort by</span>
+            <div class="">
+              <!-- <select @change="change">
             <option
               :selected="s.value === sort"
               v-for="(s, sindex) in x.sort_fields.options"
@@ -23,17 +24,18 @@
             </option>
           </select> -->
 
-            <FormulateInput
-              name="sort"
-              type="select"
-              :options="x.sort_fields.options"
-              class=""
-              @input="change"
-            />
+              <FormulateInput
+                name="sort"
+                type="select"
+                :options="x.sort_fields.options"
+                class=""
+                @input="change"
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </client-only>
   </div>
 </template>
 

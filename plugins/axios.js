@@ -49,6 +49,9 @@ export default function (context, inject) {
       // 如果有token 就带上
 
       if (!!token) {
+        console.log("%c token", "color:green;font-weight:bold");
+        console.log(JSON.stringify(token));
+
         config.headers["Authorization"] = token; // 全局加一个domain
       }
     }

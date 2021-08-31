@@ -13,33 +13,35 @@
         <div class="container my-flex">
           <span class="greeting"> Welcome to {{ $store.state.domain }}. </span>
 
-          <div class="quicklinks my-flex">
-            <!-- {{ userInfo }} -->
+          <client-only>
+            <div class="quicklinks my-flex">
+              <!-- {{ userInfo }} -->
 
-            <nuxt-link
-              v-if="$store.state.user.token"
-              :to="localePath('/user')"
-              class="has-text-white my-flex"
-            >
-              <span> User center </span>
-            </nuxt-link>
+              <nuxt-link
+                v-show="$store.state.user.token"
+                :to="localePath('/user')"
+                class="has-text-white my-flex"
+              >
+                <span> User center </span>
+              </nuxt-link>
 
-            <nuxt-link
-              v-if="!$store.state.user.token"
-              :to="localePath('/login')"
-              class="has-text-white my-flex"
-            >
-              <span> Log in </span>
-            </nuxt-link>
-            <nuxt-link
-              v-if="!$store.state.user.token"
-              style="margin-left: 2rem"
-              :to="localePath('/reg')"
-              class="has-text-white my-flex"
-            >
-              <span> Create an account </span>
-            </nuxt-link>
-          </div>
+              <nuxt-link
+                v-show="!$store.state.user.token"
+                :to="localePath('/login')"
+                class="has-text-white my-flex"
+              >
+                <span> Log in </span>
+              </nuxt-link>
+              <nuxt-link
+                v-show="!$store.state.user.token"
+                style="margin-left: 2rem"
+                :to="localePath('/reg')"
+                class="has-text-white my-flex"
+              >
+                <span> Create an account </span>
+              </nuxt-link>
+            </div>
+          </client-only>
         </div>
       </div>
 

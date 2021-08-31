@@ -31,7 +31,7 @@
     </ul>
 
     <div v-if="$device.isMobileOrTablet">
-      <div class="ml-4 is-size-6 has-text-weight-bold mb-3 mt-3">
+      <div class="ml-4 is-size-6 has-text-weight-bold mb-3 mt-3 is-capitalized">
         {{ x.label }} : ({{ x.count }})
       </div>
       <!-- <BaseFilterPrice
@@ -47,7 +47,9 @@
           :key="index"
           @click="choose(index)"
         >
-          <span>{{ option.label }} : {{ option.count }} </span>
+          <span class="is-capitalized"
+            >{{ option.label }} : {{ option.count }}
+          </span>
         </div>
       </div>
     </div>

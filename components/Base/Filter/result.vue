@@ -31,7 +31,7 @@
                   style="margin-bottom: 0.1rem"
                 >
                   <div
-                    class="tag is-link"
+                    class="tag is-link is-capitalized"
                     :style="{
                       backgroundColor: $store.state.S.mainColor,
                       color: '#fff',
@@ -74,7 +74,7 @@
                 class="tags has-addons"
               >
                 <div
-                  class="tag is-link"
+                  class="tag is-link is-capitalized"
                   :style="{
                     backgroundColor: $store.state.S.mainColor,
                   }"

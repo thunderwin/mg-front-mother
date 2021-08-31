@@ -8,9 +8,7 @@
       <!-- {{ userInfo }} -->
 
       <div class="all-orders" v-if="!!orders">
-        <div v-if="orders.length === 0" class="no-order">
-          {{ $t("c.no_order_history") }}
-        </div>
+        <div v-if="orders.length === 0" class="no-order">No order history</div>
 
         <div v-else class="has-order">
           <div v-for="(x, index) in orders" :key="index" class="each_order box">

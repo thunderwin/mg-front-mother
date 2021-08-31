@@ -10,6 +10,8 @@
       @removefilter="removefilter"
     />
 
+    <!-- {{ list }} -->
+
     <BaseFilterItem
       @filterChange="filterChange"
       v-for="(filter, index) in list"
@@ -35,28 +37,32 @@ export default {
   watch: {
     x: {
       handler: function () {
-        this.list = this.x.map((z) => {
-          let isPreSelected = Object.keys(this.filter).includes(
-            z.attribute_code
-          );
-          let selectedOption = [];
-          if (isPreSelected) {
-            if (z.attribute_code === "price") {
-              // 选择的价格需要特殊处理
-              let priceRange = this.filter.price;
-              selectedOption.push(priceRange.from + "_" + priceRange.to);
-            } else {
-              selectedOption = this.filter[z.attribute_code].in;
+        let hiddenAtt = ["department_bucket", "size"];
+
+        this.list = this.x
+          .filter((p) => !hiddenAtt.includes(p.attribute_code))
+          .map((z) => {
+            let isPreSelected = Object.keys(this.filter).includes(
+              z.attribute_code
+            );
+            let selectedOption = [];
+            if (isPreSelected) {
+              if (z.attribute_code === "price") {
+                // 选择的价格需要特殊处理
+                let priceRange = this.filter.price;
+                selectedOption.push(priceRange.from + "_" + priceRange.to);
+              } else {
+                selectedOption = this.filter[z.attribute_code].in;
+              }
             }
-          }
 
-          z.options = z.options.map((p) => {
-            p.checked = selectedOption.includes(p.value); // 已经被中
-            return p;
+            z.options = z.options.map((p) => {
+              p.checked = selectedOption.includes(p.value); // 已经被中
+              return p;
+            });
+
+            return z;
           });
-
-          return z;
-        });
 
         this.$store.commit("setFilterResult", this.list);
       },
