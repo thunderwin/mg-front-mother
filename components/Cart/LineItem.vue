@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div class="wrappeprr" style="width: 100%; padding: 0.5rem 1rem">
+    <div class="wrappeprr" style="width: 100%; padding: 1rem 1rem">
       <div
         class="checkout_line_item"
         style="
@@ -25,7 +25,7 @@
         >
           <template #tags>
             <!-- 选项-->
-            <div class="customizable_options">
+            <div class="customizable_options" style="margin-top: 0.5rem">
               <div
                 v-for="(x, indx) in item.customizable_options"
                 :key="indx"
@@ -46,7 +46,7 @@
 
             <!-- // 数量和价格 -->
             <div class="my-flex" style="justify-content: flex-end">
-              <div style="font-size: 1.3rem; flex-shrink: 0" class="pricr">
+              <div style="flex-shrink: 0" class="pricr">
                 <span>{{
                   item.prices.price.currency === "USD"
                     ? "$"

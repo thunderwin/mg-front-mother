@@ -144,9 +144,6 @@ textarea:focus {
 .van-card__content {
   min-height: auto !important;
 }
-.van-card__header {
-  align-items: center;
-}
 
 /* van-card 修改 */
 
