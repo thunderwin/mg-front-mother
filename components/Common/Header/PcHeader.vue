@@ -11,18 +11,28 @@
         }"
       >
         <div class="container my-flex">
-          <div class="greeting">
-            Welcome to {{ $store.state.domain }}, Please feel free to buy, you
-            have big chance to recive the dresses.
-          </div>
+          <span class="greeting"> Welcome to {{ $store.state.domain }}. </span>
+
           <div class="quicklinks my-flex">
+            <!-- {{ userInfo }} -->
+
             <nuxt-link
+              v-if="$store.state.user.token"
+              :to="localePath('/user')"
+              class="has-text-white my-flex"
+            >
+              <span> User center </span>
+            </nuxt-link>
+
+            <nuxt-link
+              v-if="!$store.state.user.token"
               :to="localePath('/login')"
               class="has-text-white my-flex"
             >
               <span> Log in </span>
             </nuxt-link>
             <nuxt-link
+              v-if="!$store.state.user.token"
               style="margin-left: 2rem"
               :to="localePath('/reg')"
               class="has-text-white my-flex"
@@ -178,6 +188,9 @@ export default {
   },
 
   computed: {
+    userInfo() {
+      return this.$store.getters["user/userInfo"];
+    },
     showItems() {
       return this.menu[this.showIndex].products;
     },
@@ -204,8 +217,6 @@ export default {
   },
   methods: {
     mouseOver(e) {
-      console.log("%c e", "color:green;font-weight:bold");
-      console.log(JSON.stringify(e));
       this.showIndex = e;
     },
   },

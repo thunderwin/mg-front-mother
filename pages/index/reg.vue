@@ -1,12 +1,9 @@
 <template>
   <div class="section">
     <div class="container" style="max-width: 500px; margin: 0 auto">
-      <PageReg class="is-capitalized" />
+      <PageReg class="" />
 
-      <div
-        class="create-account is-capitalized"
-        style="text-align: center; margin: 2rem auto"
-      >
+      <div class="create-account" style="text-align: center; margin: 2rem auto">
         <nuxt-link class="button is-light" to="/login"
           >Already have an account</nuxt-link
         >

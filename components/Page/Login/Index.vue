@@ -32,7 +32,7 @@
 <script>
 export default {
   beforeMount() {
-    this.$store.commit("user/logout");
+    this.$store.dispatch("user/logout");
   },
   data() {
     return {

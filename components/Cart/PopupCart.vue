@@ -1,13 +1,13 @@
 <template>
-  <div class="mob-cart-wrapper">
+  <div v-if="cart && cart.items.length > 0" class="mob-cart-wrapper">
     <div class="is-size-4" style="padding: 1rem">
-      <span>My Cart</span>
+      <span>My cart</span>
       <span style="font-weight: normal">
         ( {{ cart.total_quantity }} {{ $t("c.items") }} )</span
       >
     </div>
 
-    <div v-if="cart && cart.items.length > 0">
+    <div>
       <CartPromo />
 
       <div

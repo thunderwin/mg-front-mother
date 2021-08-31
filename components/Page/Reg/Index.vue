@@ -1,7 +1,7 @@
 <template>
   <div class="box reg-box" style="padding: 2rem">
     <div class="has-text-centered is-size-4 mb-4" style="font-weight: bold">
-      {{ $t("c.creat_user_account") }}
+      Create user account
     </div>
 
     <client-only>
@@ -10,10 +10,11 @@
 
     <!-- <AgreeTerm /> -->
 
-    <div class="buttsss is-capitalized" style="text-align: center">
+    <div class="buttsss" style="text-align: center">
       <button
         class="button is-black is-capitalized"
         style="border-radius: 4px"
+        :class="isLoading ? 'is-loading' : ''"
         @click="reg"
         :style="{
           backgroundColor: $store.state.S.mainButtonColor,
@@ -29,6 +30,11 @@
 // import AgreeTerm from "@/components/common/userEdit/agreeTerm.vue";
 
 export default {
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   computed: {
     atts() {
       return [
@@ -106,8 +112,9 @@ export default {
     async submit(e) {
       console.dir("注册表单的提交");
       console.log(JSON.stringify(e));
-
+      this.isLoading = true;
       let r = await this.$store.dispatch("user/reg", e);
+      this.isLoading = false;
 
       console.log("%c 注册结果", "color:green;font-weight:bold");
       console.log(JSON.stringify(r));
@@ -121,7 +128,7 @@ export default {
         );
         return;
       }
-      this.$store.dispatch("info/success", this.$t("c.succeed"));
+      this.$store.dispatch("info/success", "Succeed");
 
       let redpath = this.$route.query.red;
       redpath = redpath
