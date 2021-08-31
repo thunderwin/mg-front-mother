@@ -35,7 +35,6 @@
 <script>
 function convertQueryToGQLPayload(query) {
   let payload = {
-    // 默认数据
     filter: {},
     pageSize: 28,
     currentPage: 1,
