@@ -192,3 +192,9 @@ textarea:focus {
 .van-info {
   border: 0 !important;
 }
+
+/* 7部 only */
+
+#tab2 {
+  overflow-x: scroll;
+}

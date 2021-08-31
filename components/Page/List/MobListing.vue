@@ -15,6 +15,7 @@
       >
         <BaseFilterReadOnly
           style="max-width: 70%; overflow-x: scroll; overflow-y: hidden"
+          class="is-capitalized"
         />
 
         <button
