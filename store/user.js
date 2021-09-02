@@ -101,12 +101,23 @@ export const actions = {
       newPassword,
       currentPassword,
     });
-    console.log("%c 更新后的用户密码", "color:green;font-weight:bold");
+    console.log("%c 更新后的密码", "color:green;font-weight:bold");
 
     if (r.response.errors && r.response.errors.length > 0) {
       return false;
     }
     console.log(JSON.stringify(r));
+    return r;
+  },
+
+  async subscribeEmailToNewsletter({ commit, dispatch }, { email }) {
+    let r = await this.$axios.post("/api/user/subscribeEmailToNewsletter", {
+      email,
+    });
+
+    console.log("%c 订阅结果", "color:green;font-weight:bold");
+    console.log(r);
+
     return r;
   },
 };

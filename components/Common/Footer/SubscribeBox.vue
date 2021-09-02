@@ -5,7 +5,7 @@
         <FormulateForm
           :form-errors="formErrors"
           v-model="formValues"
-          name="contact-us"
+          name="subscrib"
           @submit="submit"
           style="width: 100%"
         >
@@ -14,7 +14,7 @@
 
           <FormulateInput
             name="Email"
-            validation="required"
+            validation="required|email"
             class="is-medium"
             placeholder="Email"
             style="width: 100%"
@@ -23,7 +23,12 @@
           <FormulateErrors />
         </FormulateForm>
 
-        <button class="button is-light" style="margin-left: 1rem">
+        <button
+          @click="$formulate.submit('subscrib')"
+          :class="subLoading ? 'is-loading' : ''"
+          class="button is-light"
+          style="margin-left: 1rem"
+        >
           SIGN UP
         </button>
       </client-only>
@@ -47,6 +52,8 @@ export default {
     return {
       formValues: {},
       formErrors: [],
+
+      subLoading: false,
     };
   },
   computed: {},
@@ -54,7 +61,12 @@ export default {
 
   methods: {
     async submit(e) {
-      this.$emit("submit", e);
+      this.subLoading = true;
+      await this.$store.dispatch("user/subscribeEmailToNewsletter", {
+        email: e.Email,
+      });
+
+      this.subLoading = false;
     },
   },
 };

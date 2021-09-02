@@ -95,8 +95,8 @@
       class="footer van-hairline--top mob-footer"
       style="padding: 1rem"
     >
-      <div class="left-menus" style="text-transform: capitalize">
-        <van-row gutter="20" class="container" style="">
+      <div class="left-menus">
+        <van-row gutter="20" class="container is-capitalized" style="">
           <van-col span="12">
             <span class="navbar-item is-size-6">COMPANY INFO</span>
             <div v-for="(y, yindex) in staticMenu" :key="(yindex + 4) * 1112">
@@ -119,7 +119,7 @@
             <span class="is-uppercase">{{ $store.state.domain }}</span> STYLE
             NEWS
           </div>
-          <CommonFooterSubscribeBox />
+          <CommonFooterSubscribeBox style="" />
           <CommonFooterSocialIcons class="" style="margin-top: 2rem" />
         </div>
       </div>
