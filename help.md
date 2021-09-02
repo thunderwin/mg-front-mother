@@ -1,6 +1,6 @@
 cd /var/www/api && git pull a master && yarn && cd /var/www/web && git pull a master && yarn && yarn build && pm2 reload all
 
-## 生产静态网站`1
+## 生产静态网站
 
 https://www.bookstack.cn/read/nuxt-v0.10.7/configuration-generate.md
 
