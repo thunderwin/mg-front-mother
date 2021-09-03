@@ -3,12 +3,19 @@
     <section class="section is-capitalized">
       <BaseFormBuilder
         style="font-size: 16px; font-weight: bold"
-        name="add-review"
+        name="addreview"
         :atts="atts"
-        :isLoading="isLoading"
-        :submitBtnText="$t('form.submit_review')"
         @submit="submit"
       />
+
+      <button
+        @click="$formulate.submit('addreview')"
+        :class="isLoading ? 'is-loading' : ''"
+        class="button is-light"
+        :style="{ backgroundColor: $store.state.S.mainButtonColor }"
+      >
+        Submit
+      </button>
     </section>
   </div>
 </template>

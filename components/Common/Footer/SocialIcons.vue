@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="footer-links__social-icons-container">
-      <ul class="social-icons my-flex">
-        <li class="social-icons__item">
+      <ul class="social-icons my-flex" style="justify-content: flex-start">
+        <li v-if="socialNetwork.instagram" class="social-icons__item">
           <a
             class="social-icons__link"
-            href="https://www.instagram.com/fashionnova"
+            :href="socialNetwork.instagram"
             aria-describedby="a11y-external-message"
             target="_blank"
             rel="noopener"
@@ -22,10 +22,10 @@
             <span class="visually-hidden">Instagram</span>
           </a>
         </li>
-        <li class="social-icons__item">
+        <li v-if="socialNetwork.tiktok" class="social-icons__item">
           <a
             class="social-icons__link"
-            href="https://www.tiktok.com/@fashionnova"
+            :href="socialNetwork.tiktok"
             aria-describedby="a11y-external-message"
             target="_blank"
             rel="noopener"
@@ -45,10 +45,10 @@
             <span class="visually-hidden">Tiktok</span>
           </a>
         </li>
-        <li class="social-icons__item">
+        <li v-if="socialNetwork.youtube" class="social-icons__item">
           <a
             class="social-icons__link"
-            href="https://www.youtube.com/fashionnova"
+            :href="socialNetwork.youtube"
             aria-describedby="a11y-external-message"
             target="_blank"
             rel="noopener"
@@ -81,10 +81,10 @@
             <span class="visually-hidden">Youtube</span>
           </a>
         </li>
-        <li class="social-icons__item">
+        <li v-if="socialNetwork.snapchat" class="social-icons__item">
           <a
             class="social-icons__link"
-            href="https://www.snapchat.com/add/fashionnova"
+            :href="socialNetwork.snapchat"
             aria-describedby="a11y-external-message"
             target="_blank"
             rel="noopener"
@@ -97,10 +97,10 @@
             <span class="visually-hidden">Snapchat</span>
           </a>
         </li>
-        <li class="social-icons__item">
+        <li v-if="socialNetwork.facebook" class="social-icons__item">
           <a
             class="social-icons__link"
-            href="https://www.facebook.com/FashionNova"
+            :href="socialNetwork.facebook"
             aria-describedby="a11y-external-message"
             target="_blank"
             rel="noopener"
@@ -126,10 +126,10 @@
             <span class="visually-hidden">Facebook</span>
           </a>
         </li>
-        <li class="social-icons__item">
+        <li v-if="socialNetwork.pinterest" class="social-icons__item">
           <a
             class="social-icons__link"
-            href="http://www.pinterest.com/fashionnova/"
+            :href="socialNetwork.pinterest"
             aria-describedby="a11y-external-message"
             target="_blank"
             rel="noopener"
@@ -161,7 +161,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    socialNetwork() {
+      let s = this.$store.state.S.socialNetwork;
+
+      let obj = {};
+
+      s.forEach((x) => {
+        obj[x.name] = x.link;
+      });
+      return obj;
+    },
+  },
+};
 </script>
 
 <style lang="scss">

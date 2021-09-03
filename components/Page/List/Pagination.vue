@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 1rem">
+  <div style="padding: 1rem" class="pagging">
     <nav
       class="pagination is-centered"
       role="navigation"
@@ -32,9 +32,13 @@
           <li v-if="Math.abs(x - pageInfo.current_page) < 3">
             <a
               @click="click(x)"
-              class="pagination-link has-text-white"
+              class="pagination-link"
               :style="{
-                backgroundColor: $store.state.S.mainButtonColor,
+                backgroundColor:
+                  x === pageInfo.current_page
+                    ? $store.state.S.mainButtonColor
+                    : '',
+                color: '#222',
               }"
               :class="x === pageInfo.current_page ? 'is-current' : ''"
               >{{ x }}</a
@@ -72,4 +76,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.pagging .is-current {
+  color: #fff;
+}
+</style>

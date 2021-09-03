@@ -5,7 +5,7 @@
     class="webapp"
     :style="{
       fontFamily:
-        $store.state.S.fontFamily +
+        $store.state.S.fontFamilyContent +
         ',DM Sans, system-ui, -apple-system, Segoe UI, Roboto !important;',
     }"
   >

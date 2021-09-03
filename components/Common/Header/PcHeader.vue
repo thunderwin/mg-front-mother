@@ -4,7 +4,7 @@
       <div
         class="header-global-top is-light"
         :style="{
-          backgroundColor: $store.state.S.mainColor,
+          backgroundColor: $store.state.S.headerTopColor,
           color: '#f5f6f8',
           lineHeight: '2rem',
           height: '2rem',

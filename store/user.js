@@ -115,8 +115,15 @@ export const actions = {
       email,
     });
 
+    if (r.code === 1) {
+      dispatch("info/error", "failed", { root: true });
+      return;
+    }
+
     console.log("%c 订阅结果", "color:green;font-weight:bold");
     console.log(r);
+
+    dispatch("info/success", "successed", { root: true });
 
     return r;
   },

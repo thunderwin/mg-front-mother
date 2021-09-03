@@ -270,10 +270,10 @@ export default {
       target: "https://shopify.s3.amazonaws.com/tmp/",
       pathRewrite: { "^/aws/": "" },
     },
-    "/dis/": {
-      target: "https://www.thousandcountry.com/",
-      pathRewrite: { "^/dis/": "" },
-    },
+    // "/dis/": {
+    //   target: "https://www.thousandcountry.com/",
+    //   pathRewrite: { "^/dis/": "" },
+    // },
   },
   /*
    ** Build configuration
