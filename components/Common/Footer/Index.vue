@@ -146,7 +146,8 @@
           <nuxt-link
             v-for="(x, index) in staticMenu3"
             :key="index"
-            class="navbar-item"
+            class=""
+            style="margin-left: 1rem"
             :to="'/i/terms-of-service'"
           >
             <span>{{ x.label }}</span>
