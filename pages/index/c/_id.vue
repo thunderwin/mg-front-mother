@@ -2,7 +2,7 @@
   <div>
     <div class="listingWrapper">
       <div v-if="$fetchState.pending" class="loading">
-        <section class="section">
+        <section :class="$device.isDesktop ? 'section' : ''">
           <div class="container">
             <content-placeholders rounded style="padding: 1rem 1rem">
               <content-placeholders-text :lines="1" />

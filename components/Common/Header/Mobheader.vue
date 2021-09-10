@@ -139,7 +139,7 @@
 export default {
   data() {
     return {
-      popupWidth: "60%",
+      popupWidth: "70%",
       showMenu: false,
 
       showCategory: [],
@@ -167,7 +167,7 @@ export default {
     golink(id) {
       this.showMenu = !this.showMenu;
 
-      this.$router.push(this.localePath("/list") + "?category_id=" + id);
+      this.$router.push(this.localePath("/c") + "/" + id);
     },
     onClickLeft(e) {
       this.showMenu = !this.showMenu;
