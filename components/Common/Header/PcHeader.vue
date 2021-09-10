@@ -89,7 +89,7 @@
             @mouseover="mouseOver(index)"
           >
             <nuxt-link
-              :to="localePath('/list') + '?category_id=' + x.id"
+              :to="localePath('/c') + '/' + x.id"
               class="navbar-link is-size-6 is-bold"
               style="font-weight: bold"
             >

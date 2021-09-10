@@ -1,216 +1,103 @@
 <template>
   <div>
-    <!-- <progress class="progress is-small is-primary" max="100">15%</progress> -->
+    <div class="listingWrapper">
+      <div v-if="$fetchState.pending" class="loading">
+        <section class="section">
+          <div class="container">
+            <content-placeholders rounded style="padding: 1rem 1rem">
+              <content-placeholders-text :lines="1" />
+              <content-placeholders-text :lines="5" />
+            </content-placeholders>
 
-    <section v-if="products.total_count == 0" class="section">
-      <article class="container message">
-        <div class="message-body">No product found</div>
-      </article>
-    </section>
+            <PageCategoryItemPlaceholder slot="loading" />
+          </div>
+        </section>
+      </div>
 
-    <div v-else class="has-product">
-      <!-- <PageListSorting
-        v-if="$device.isDesktop"
-        :x="products"
-        :sort="productsPayload.sort"
-      /> -->
+      <div style="padding: 0" v-if="list.length > 0">
+        <!-- {{ allItem.length }} -->
 
-      <!-- {{ categorys }} -->
+        <PageCategoryDesc style="" :categorys="categorys" />
 
-      <PageListPcListing
-        v-if="$device.isDesktop"
-        :products="products"
-        :categorys="categorys"
-        :filter="productsPayload.filter"
-      />
+        <!-- {{ categorys.products.page_info }} -->
+        <van-sticky>
+          <PageCategorySorting
+            style="background-color: #fff"
+            :pageInfo="categorys.products.page_info"
+            :total="categorys.products.total_count"
+          />
+        </van-sticky>
 
-      <PageListMobListing
-        v-if="$device.isMobileOrTablet"
-        :products="products"
-        :categorys="categorys"
-        :filter="productsPayload.filter"
-        @loadMore="mobLoadMore"
-        ref="mobListing"
-      />
+        <van-list
+          style="margin-top: 1rem"
+          v-model="loading"
+          :finished="finished"
+          finished-text="No more"
+          loading-text="Loading..."
+          @load="loadMore"
+          class="container"
+        >
+          <PageCategoryItemPlaceholder slot="loading" />
+
+          <van-grid
+            :border="false"
+            :center="false"
+            :gutter="'1rem'"
+            :clickable="true"
+            :column-num="$device.isDesktop ? 6 : 2"
+          >
+            <van-grid-item v-for="(x, index) in list" :key="index">
+              <!-- {{ x.name }} -->
+              <BaseProduct class="shadow" :x="x" />
+            </van-grid-item>
+          </van-grid>
+        </van-list>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-function convertQueryToGQLPayload(query) {
-  let payload = {
-    // 默认数据
-    filter: {},
-    pageSize: 20,
-    currentPage: 1,
-    search: "",
-    sort: {
-      price: "DESC",
-    },
-  };
-
-  for (let x in query) {
-    if (x.indexOf("sortby") > -1) {
-      let key = x.split("_")[1];
-      let value = query[x];
-      payload.sort[key] = value;
-    } else if (x.indexOf("pagesize") > -1) {
-      payload.pageSize = query[x];
-    } else if (x.indexOf("currentpage") > -1) {
-      payload.currentPage = query[x];
-    } else if (x === "price") {
-      // 价格需要特殊处理下
-      let priceRange = query.price.split("_");
-      payload.filter.price = {
-        from: priceRange[0],
-        to: priceRange[1],
-      };
-    } else {
-      payload.filter[x] = {
-        in: query[x].split(","),
-      };
-    }
-  }
-
-  return payload;
-}
-
-function covertQueryToDisplayFilterAndPageInfo(payload, aggregations) {
-  let filer = {};
-  let sorting;
-  let pageInfo;
-}
-
 export default {
   scrollToTop: true,
   watchQuery: true,
   data() {
     return {
-      products: "",
-      categorys: [],
+      loading: false,
+      finished: false,
+      moreItems: [],
+      pageInfo: "",
+      list: [],
+
+      categorys: {},
+
+      currentPage: 1,
     };
   },
-  // watch: {
-  //   "$route.params.id": function (v) {
-  //     console.log("%c v ", "color:green;font-weight:bold");
-  //     console.log(JSON.stringify(v));
-  //     this.getList();
-  //   },
-  // },
-  methods: {
-    async getList() {},
-  },
 
-  // async fetch() {
-  //   let id = this.$route.params.id;
-
-  //   let productsPayload = {
-  //     filter: {
-  //       category_id: {
-  //         eq: id,
-  //       },
-  //     },
-  //     pageSize: 30,
-  //     currentPage: 1,
-  //     search: "",
-  //     sort: {
-  //       price: "DESC",
-  //     },
-  //   };
-
-  //   let p1 = this.$store.dispatch(
-  //     "product/productWithFilterSort",
-  //     productsPayload
-  //   );
-
-  //   let categoryPayload = {
-  //     filters: {
-  //       ids: {
-  //         eq: id,
-  //       },
-  //     },
-  //     pageSize: 20,
-  //     currentPage: 1,
-  //     search: "",
-  //     sort: {
-  //       price: "DESC",
-  //     },
-  //   };
-
-  //   let p2 = this.$store.dispatch("category/list", categoryPayload);
-
-  //   console.log("%c 拿到的产品 和子分类", "color:green;font-weight:bold");
-
-  //   let r = await Promise.all([p1, p2]);
-  //   console.log(JSON.stringify(r));
-
-  //   this.products = r[0].products;
-  //   this.categorys = r[1].categoryList[0]; // 这里是数组
-  // },
-
-  methods: {
-    async mobLoadMore() {
-      // console.log("%c 手机上加载更多", "color:green;font-weight:bold");
-      let query = this.$route.query;
-
-      // console.log("%c 当前的参数", "color:green;font-weight:bold");
-      // console.log(JSON.stringify(query));
-
-      let productsPayload = convertQueryToGQLPayload(query);
-
-      // console.log("%c 当前的请求参数", "color:green;font-weight:bold");
-      // console.log(JSON.stringify(productsPayload));
-
-      productsPayload.currentPage = Number(productsPayload.currentPage) + 1; // 翻页
-
-      let r = await this.$store.dispatch(
-        "product/productWithFilterSort",
-        productsPayload
-      );
-
-      this.$refs.mobListing.loading = false;
-
-      console.log("%c 新加载的产品", "color:green;font-weight:bold");
-      console.log(JSON.stringify(r.products.items.map((x) => x.name)));
-
-      this.$refs.mobListing.moreItems = this.$refs.mobListing.moreItems.concat(
-        r.products.items
-      );
-
-      // console.log("%c 加载产品的总数", "color:green;font-weight:bold");
-      // console.log(JSON.stringify(r.products.page_info));
-
-      let pageInfo = r.products.page_info;
-
-      if (pageInfo.current_page === pageInfo.total_pages) {
-        this.$refs.mobListing.finished = true;
-        return;
-      }
+  watch: {
+    "$route.params.id": function (id) {
+      console.log("%c id", "color:green;font-weight:bold");
+      console.log(JSON.stringify(id));
+      this.currentPage = 1;
+      this.list = [];
+      this.categorys = {};
+      this.$fetch();
     },
   },
 
-  async asyncData({
-    isDev,
-    route,
-    store,
-    env,
-    params,
-    query,
-    req,
-    res,
-    redirect,
-    error,
-  }) {
-    let categoryId = params.id;
+  methods: {
+    async loadMore(e) {
+      this.loading = true;
+      this.currentPage += 1;
+      console.log("%c 触发下拉加载", "color:green;font-weight:bold");
+      await this.$fetch();
+      this.loading = false;
+    },
+  },
 
-    query = { category_id: categoryId };
-
-    let productsPayload = convertQueryToGQLPayload(query);
-
-    console.log("%c productsPayload", "color:green;font-weight:bold");
-    console.log(JSON.stringify(productsPayload));
-
-    let p1 = store.dispatch("product/productWithFilterSort", productsPayload);
+  async fetch() {
+    let categoryId = this.$route.params.id;
 
     let categoryPayload = {
       filters: {
@@ -218,8 +105,8 @@ export default {
           in: [categoryId],
         },
       },
-      pageSize: 20,
-      currentPage: 1,
+      pageSize: 18,
+      currentPage: this.currentPage,
       search: "",
       sort: {
         price: "DESC",
@@ -227,20 +114,64 @@ export default {
     };
 
     // 🌶️
-    let p2 = store.dispatch("category/list", categoryPayload);
-    console.log("%c 拿到的产品 和子分类", "color:green;font-weight:bold");
-
-    let r = await Promise.all([p1, p2]);
-
-    console.log("%c 拿到的产品 和子分类", "color:green;font-weight:bold");
+    let r = await this.$store.dispatch("category/list", categoryPayload);
+    console.log("%c 拿到的产品和子分类", "color:green;font-weight:bold");
     console.log(JSON.stringify(r));
 
-    return {
-      products: r[0].products,
-      productsPayload,
-      categorys: r[1].categoryList[0], // 这里是数组
-    };
+    this.categorys = r.categoryList[0]; // 这里是数组
+    let pageInfo = this.categorys.products.page_info;
+    this.pageInfo = pageInfo;
+    console.log("%c 当前页", "color:green;font-weight:bold");
+    console.log(JSON.stringify(pageInfo.current_page));
+    console.log("%c 一共多少页", "color:green;font-weight:bold");
+    console.log(JSON.stringify(pageInfo.total_pages));
+    console.log("%c 是否完成", "color:green;font-weight:bold");
+    console.log(JSON.stringify(this.finished));
+    if (pageInfo.current_page === pageInfo.total_pages) {
+      this.finished = true;
+      return;
+    }
+
+    this.list = this.list.concat(r.categoryList[0].products.items);
   },
+
+  // async asyncData({
+  //   isDev,
+  //   route,
+  //   store,
+  //   env,
+  //   params,
+  //   query,
+  //   req,
+  //   res,
+  //   redirect,
+  //   error,
+  // }) {
+  //   let categoryId = params.id;
+
+  //   let categoryPayload = {
+  //     filters: {
+  //       ids: {
+  //         in: [categoryId],
+  //       },
+  //     },
+  //     pageSize: 40,
+  //     currentPage: 1,
+  //     search: "",
+  //     sort: {
+  //       price: "DESC",
+  //     },
+  //   };
+
+  //   // 🌶️
+  //   let r = await store.dispatch("category/list", categoryPayload);
+  //   console.log("%c 拿到的产品和子分类", "color:green;font-weight:bold");
+  //   console.log(JSON.stringify(r));
+
+  //   return {
+  //     categorys: r.categoryList[0], // 这里是数组
+  //   };
+  // },
 };
 </script>
 
