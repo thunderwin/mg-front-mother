@@ -124,7 +124,7 @@ export default {
           title: "",
           message: r.response.errors[0].message,
           theme: "round-button",
-          confirmButtonColor: this.$store.state.S.mainButtonColor,
+          confirmButtonColor: this.$store.state.S.mainColor,
           confirmButtonText: "OK",
         });
         return;

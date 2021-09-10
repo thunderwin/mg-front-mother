@@ -18,7 +18,7 @@
           :class="isLoading ? 'is-loading' : ''"
           class="button is-black"
           :style="{
-            backgroundColor: $store.state.S.mainButtonColor,
+            backgroundColor: $store.state.S.mainColor,
           }"
           @click="submit"
         >

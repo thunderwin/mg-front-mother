@@ -49,6 +49,7 @@
         class="header-top-up"
         :style="{
           backgroundColor: '#fff',
+          margin: '0.5rem 0',
         }"
       >
         <div class="my-flex container">
@@ -68,7 +69,7 @@
                 <van-icon
                   name="cart-o"
                   size="25"
-                  :color="$store.state.S.mainButtonColor"
+                  :color="$store.state.S.mainColor"
                 />
               </div>
             </a>

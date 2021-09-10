@@ -4,7 +4,7 @@
       <span
         class="tag"
         :style="{
-          backgroundColor: $store.state.S.mainColor,
+          backgroundColor: $store.state.S.mainIconColor,
           color: '#fff',
         }"
         v-for="(f, findex) in flatOption"

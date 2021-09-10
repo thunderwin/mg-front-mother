@@ -46,7 +46,7 @@
       <button
         class="button"
         :style="{
-          backgroundColor: $store.state.S.mainButtonColor,
+          backgroundColor: $store.state.S.mainColor,
         }"
         @click="logout"
       >

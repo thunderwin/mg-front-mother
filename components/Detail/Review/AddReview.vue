@@ -12,7 +12,7 @@
         @click="$formulate.submit('addreview')"
         :class="isLoading ? 'is-loading' : ''"
         class="button is-light"
-        :style="{ backgroundColor: $store.state.S.mainButtonColor }"
+        :style="{ backgroundColor: $store.state.S.mainColor }"
       >
         Submit
       </button>

@@ -21,7 +21,7 @@
               :class="isLoading ? 'is-loading' : ''"
               style="margin-top: 2rem"
               :style="{
-                backgroundColor: $store.state.S.mainButtonColor,
+                backgroundColor: $store.state.S.mainColor,
               }"
               @click="$refs.editAddress.submitContact()"
             >

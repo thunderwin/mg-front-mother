@@ -84,7 +84,7 @@
           v-if="$route.path !== '/checkout'"
           @click="goCheckout"
           :style="{
-            backgroundColor: $store.state.S.mainButtonColor,
+            backgroundColor: $store.state.S.mainColor,
           }"
         >
           {{ $t("c.checkout") }}

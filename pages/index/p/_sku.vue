@@ -124,7 +124,7 @@
                 class="button is-nomal"
                 :class="addingCart ? 'is-loading' : ''"
                 :style="{
-                  backgroundColor: $store.state.S.mainButtonColor,
+                  backgroundColor: $store.state.S.mainColor,
                 }"
                 @click="addToCart"
               >

@@ -23,7 +23,7 @@
               class="button is-capitalized"
               :class="isLoading ? 'is-loading' : ''"
               :style="{
-                backgroundColor: $store.state.S.mainButtonColor,
+                backgroundColor: $store.state.S.mainColor,
                 marginTop: '2rem',
               }"
               @click="genPayment"

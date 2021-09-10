@@ -52,7 +52,7 @@
         <button
           class="button is-capitalized"
           :style="{
-            backgroundColor: $store.state.S.mainButtonColor,
+            backgroundColor: $store.state.S.mainColor,
             marginTop: '2rem',
           }"
           @click="goPay"

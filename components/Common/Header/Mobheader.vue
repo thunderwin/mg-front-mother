@@ -6,11 +6,7 @@
       @click-right="onClickRight"
     >
       <template #left>
-        <van-icon
-          name="wap-nav"
-          :color="$store.state.S.mobIconColor"
-          size="25"
-        />
+        <van-icon name="wap-nav" :color="$store.state.S.mainColor" size="25" />
       </template>
       <template #title>
         <CommonHeaderLogo class="color:#000" />
@@ -26,11 +22,7 @@
             {{ cartQty }}
           </div>
           <!-- {{ $t("c.shopping_cart") }} -->
-          <van-icon
-            name="cart-o"
-            size="25"
-            :color="$store.state.S.mobIconColor"
-          />
+          <van-icon name="cart-o" size="25" :color="$store.state.S.mainColor" />
         </div>
       </template>
     </van-nav-bar>

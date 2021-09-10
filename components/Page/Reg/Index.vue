@@ -17,7 +17,7 @@
         :class="isLoading ? 'is-loading' : ''"
         @click="reg"
         :style="{
-          backgroundColor: $store.state.S.mainButtonColor,
+          backgroundColor: $store.state.S.mainColor,
         }"
       >
         {{ $t("c.register") }}

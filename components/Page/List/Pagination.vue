@@ -35,9 +35,7 @@
               class="pagination-link"
               :style="{
                 backgroundColor:
-                  x === pageInfo.current_page
-                    ? $store.state.S.mainButtonColor
-                    : '',
+                  x === pageInfo.current_page ? $store.state.S.mainColor : '',
                 color: '#222',
               }"
               :class="x === pageInfo.current_page ? 'is-current' : ''"
