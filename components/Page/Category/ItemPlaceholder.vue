@@ -6,7 +6,7 @@
     :gutter="'1rem'"
     :column-num="$device.isDesktop ? 6 : 2"
   >
-    <van-grid-item v-for="(x, index) in 6" :key="index">
+    <van-grid-item v-for="(x, index) in 12" :key="index">
       <content-placeholders rounded>
         <content-placeholders-img />
         <content-placeholders-text :lines="3" />

@@ -7,6 +7,8 @@
             <content-placeholders rounded style="padding: 1rem 1rem">
               <content-placeholders-text :lines="1" />
               <content-placeholders-text :lines="5" />
+
+              <content-placeholders-img />
             </content-placeholders>
 
             <PageCategoryItemPlaceholder slot="loading" />
