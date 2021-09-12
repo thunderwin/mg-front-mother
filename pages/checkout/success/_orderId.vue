@@ -2,6 +2,7 @@
   <div>
     <div class="container" style="text-align: center">
       <div
+        v-if="paymentResult"
         class="shadow"
         style="justify-content: center; margin: 2rem; padding: 2rem"
       >
@@ -39,16 +40,27 @@ export default {
   data() {
     return {
       htmlTitle: "Payment suceessed",
+
+      paymentResult: null,
     };
   },
   async mounted() {
-    let { data: x } = await this.$axios.post("/api/payment/paypalCapture", {
+    let r = await this.$axios.post("/api/payment/paypalCapture", {
       token: this.$route.query.token,
       orderId: this.$route.params.orderId,
     });
 
     console.log("%c 查询订单支付状态的结果", "color:green;font-weight:bold");
-    console.log(JSON.stringify(x));
+    console.log(JSON.stringify(r));
+
+    if (!r.order_number) {
+      this.paymentResult = false;
+    }
+
+    let code = this.$i18n.locale;
+    this.$store.commit("cart/removeCart", code);
+    this.$store.commit("cart/setCartQTY", { code, qty: 0 });
+    this.paymentResult = true;
   },
   methods: {
     submit() {

@@ -127,8 +127,8 @@ export default {
     };
   },
 
-  mounted() {
-    this.getCountries();
+  async mounted() {
+    await this.getCountries();
   },
   watch: {
     oldAddress(v) {
@@ -137,6 +137,9 @@ export default {
   },
   methods: {
     initOldAddress(v) {
+      console.log("%c v", "color:green;font-weight:bold");
+      console.log(JSON.stringify(v));
+
       for (let x in v) {
         // console.log("%c xxxxx", "color:green;font-weight:bold");
         // console.log(JSON.stringify(x));
@@ -144,7 +147,7 @@ export default {
         if (x === "country") {
           this.formValues[x] = v[x].code;
         } else if (x === "province") {
-          this.formValues[x] = v[x].code;
+          this.formValues[x] = v[x] ? v[x].code : ""; // fix 省份可能为0
         } else if (x === "street") {
           this.formValues[x] = v[x][0];
         } else {
