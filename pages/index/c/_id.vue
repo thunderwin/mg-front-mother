@@ -63,6 +63,7 @@
 export default {
   scrollToTop: true,
   watchQuery: true,
+  name: "product-list-page",
   data() {
     return {
       loading: false,
