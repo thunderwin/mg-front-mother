@@ -41,7 +41,7 @@
           </template>
         </van-image>
 
-        <!-- {{ category }} -->
+        {{ category }}
 
         <van-grid
           v-if="category.product_count > 0"
@@ -55,27 +55,7 @@
             v-for="(z, index) in category.products.items"
             :key="index"
           >
-            <nuxt-link
-              class="shadow"
-              :to="localePath('/list') + '?category_id=' + x.id"
-            >
-              <van-image width="100%" :src="z.image.url" />
-
-              <div class="subcate" style="padding: 1rem">
-                <div
-                  class="is-centered is-capitalized is-size-5"
-                  style="text-align: center; margin-top: 1rem"
-                >
-                  {{ z.name }}
-                </div>
-
-                <div
-                  class="is-centered is-capitalized"
-                  style="text-align: center; margin-top: 1rem"
-                  v-html="z.description"
-                ></div>
-              </div>
-            </nuxt-link>
+            <BaseProduct :x="z" />
           </van-grid-item>
         </van-grid>
       </div>
