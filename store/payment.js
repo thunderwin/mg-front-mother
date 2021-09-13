@@ -5,11 +5,9 @@ export const mutations = {};
 export const actions = {
   async create({ commit, dispatch, state, rootState }) {
     if (rootState.checkout.orderInfo.id) {
-      let r = await this.$axios
-        .post("/api/payment/paypalCreate", {
-          draftOrderId: rootState.checkout.orderInfo.id,
-        })
-        .then();
+      let r = await this.$axios.post("/api/payment/paypalCreate", {
+        draftOrderId: rootState.checkout.orderInfo.id,
+      });
 
       let url = r.links.find((x) => x.rel === "approve").href;
       window.location.href = url; // 这个不会让google 显示警告

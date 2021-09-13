@@ -44,7 +44,7 @@ export default {
       paymentResult: null,
     };
   },
-  async mounted() {
+  async fetch() {
     let r = await this.$axios.post("/api/payment/paypalCapture", {
       token: this.$route.query.token,
       orderId: this.$route.params.orderId,

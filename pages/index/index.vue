@@ -16,6 +16,8 @@
     <!-- <PageHomepageCategory :categoryList="menu" style="margin-top: 30px" /> -->
 
     <!-- <BaseProductRow v-for="(x, index) in list" :key="index" :x="x" /> -->
+
+    <CommonSubscriptionPopup />
   </div>
 </template>
 
