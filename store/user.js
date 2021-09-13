@@ -116,8 +116,8 @@ export const actions = {
     });
 
     if (r.code === 1) {
-      dispatch("info/error", "failed", { root: true });
-      return;
+      dispatch("info/error", "Email address has been used.", { root: true });
+      return false;
     }
 
     console.log("%c 订阅结果", "color:green;font-weight:bold");
@@ -125,6 +125,6 @@ export const actions = {
 
     dispatch("info/success", "successed", { root: true });
 
-    return r;
+    return true;
   },
 };

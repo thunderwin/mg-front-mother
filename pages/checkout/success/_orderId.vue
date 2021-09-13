@@ -44,7 +44,7 @@ export default {
       paymentResult: null,
     };
   },
-  async fetch() {
+  async mounted() {
     let r = await this.$axios.post("/api/payment/paypalCapture", {
       token: this.$route.query.token,
       orderId: this.$route.params.orderId,
@@ -58,8 +58,10 @@ export default {
     }
 
     let code = this.$i18n.locale;
+
     this.$store.commit("cart/removeCart", code);
     this.$store.commit("cart/setCartQTY", { code, qty: 0 });
+
     this.paymentResult = true;
   },
   methods: {
