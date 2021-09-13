@@ -5,6 +5,7 @@ export const state = () => ({
   S: {}, // 店铺核心样式和板块配置
 
   menu: [],
+  flatMenu: [], // 扁平化的菜单
   availableStores: [],
   logo: {},
   sliders: [],
@@ -19,6 +20,10 @@ export const state = () => ({
 });
 
 export const getters = {
+  getCateViaId: (state) => (id) => {
+    return state.flatMenu.find((x) => x.id === id);
+  },
+
   showFilter(state) {
     return state.showFilterPopup;
   },
@@ -69,6 +74,9 @@ export const mutations = {
   setMenu(state, v) {
     state.menu = v;
   },
+  setFlatMenu(state, v) {
+    state.flatMenu = v;
+  },
   setCMS(state, v) {
     state.CMS = v;
   },
@@ -101,7 +109,7 @@ export const actions = {
   ) {
     let host =
       process.env.NODE_ENV === "development"
-        ? "www.ivchicy.com"
+        ? "www.luckychique.com"
         : req.headers.host;
 
     let domain = host.split(".")[0];
@@ -128,6 +136,7 @@ export const actions = {
     commit("setConfig", r.storeConfig); // 店铺默认配置
     commit("setDomainStyle", r.storeCustomConfig); // 我自定义的配置
     commit("setMenu", r.menu); // 根目录菜单
+    commit("setFlatMenu", r.flatMenu); // 根目录菜单
 
     // commit("setAvailableStores", r.availableStores);
     // commit("setLogo", r.logo);

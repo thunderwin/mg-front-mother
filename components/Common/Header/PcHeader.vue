@@ -118,7 +118,8 @@
                 </div>
               </div>
               <div class="hot-items">
-                <BaseProductSwiperRow :products="showItems.items" />
+                <!-- {{ firstThreeMenu }} -->
+                <!-- <BaseProductSwiperRow :products="showItems.items" /> -->
               </div>
             </div>
           </div>
@@ -194,9 +195,6 @@ export default {
     userInfo() {
       return this.$store.getters["user/userInfo"];
     },
-    showItems() {
-      return this.menu[this.showIndex].products;
-    },
 
     showMenus() {
       return this.menu[this.showIndex];
@@ -206,9 +204,11 @@ export default {
       let code = this.$i18n.locale;
       return this.$store.state.cart.cartQty[code];
     },
+
     menu() {
       return this.$store.state.menu;
     },
+
     showShoppingCart: {
       set(e) {
         this.$store.commit("setCartPopup", e);
