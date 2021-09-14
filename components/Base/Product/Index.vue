@@ -3,24 +3,20 @@
     <div class="">
       <!-- {{ x.imglist }} -->
       <a @click="jump">
-        <van-image fit="cover" :src="img" />
+        <!-- <van-image fit="cover" :src="img" /> -->
+        <van-image
+          height="auto"
+          width="100%"
+          lazy-load
+          fit="contain"
+          :src="img"
+        >
+          <template v-slot:loading>
+            <van-loading type="spinner" size="20" />
+          </template>
+        </van-image>
 
         <div class="" style="padding: 0.5rem 1rem 1rem 1rem">
-          <!-- <div class="media">
-          <div class="media-left">
-            <figure class="image is-48x48">
-              <img
-                src="https://bulma.io/images/placeholders/96x96.png"
-                alt="Placeholder image"
-              />
-            </figure>
-          </div>
-          <div class="media-content">
-            <p class="title is-4">John Smith</p>
-            <p class="subtitle is-6">@johnsmith</p>
-          </div>
-        </div> -->
-
           <div class="">
             <div class="is-size-6 van-multi-ellipsis--l2 has-text-grey">
               {{ x.name }}

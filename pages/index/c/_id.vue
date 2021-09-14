@@ -96,6 +96,7 @@
           :option="injectDetail.options"
           ref="customOption"
           style="padding: 1rem"
+          class="van-hairline--bottom"
         />
       </template>
     </van-submit-bar>
