@@ -8,7 +8,7 @@
   >
     <van-grid-item v-for="(x, index) in 12" :key="index">
       <content-placeholders rounded>
-        <content-placeholders-img />
+        <content-placeholders-img style="height: 250px" />
         <content-placeholders-text :lines="3" />
       </content-placeholders>
     </van-grid-item>

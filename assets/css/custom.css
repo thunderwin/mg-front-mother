@@ -203,3 +203,9 @@ textarea:focus {
   background-color: #fff !important;
   padding: 0 !important;
 }
+.van-submit-bar__button {
+  min-width: 10rem !important;
+}
+.add-cart-box .van-button--default {
+  border: 0 !important;
+}

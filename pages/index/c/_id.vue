@@ -83,12 +83,21 @@
       "
       button-text="Add to cart"
       currency="$"
-      :label="'Price:' + ' '"
+      :label="' '"
       :button-color="$store.state.S.mainColor"
       :loading="addingCart"
       @submit="onSubmit"
-      class="van-hairline--top"
+      class="van-hairline--top add-cart-box"
     >
+      <!-- <van-icon name="arrow-left" size="1.5rem" />
+      <van-icon name="cart-o" size="1.5rem" /> -->
+      <van-button
+        icon="arrow-left"
+        @click="showDetail = false"
+        type="default"
+      />
+      <van-button icon="cart-o" @click="clickCart" type="default" />
+
       <template #tip>
         <DetailCustomWrapper
           v-if="showDetail && showOptionChoosen"
@@ -166,6 +175,10 @@ export default {
   },
 
   methods: {
+    clickCart() {
+      this.showDetail = false;
+      this.$store.commit("setCartPopup", true);
+    },
     async onSubmit() {
       let chosenOption; // 自定义属性
 
