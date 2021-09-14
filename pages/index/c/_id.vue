@@ -336,4 +336,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.add-cart-box {
+  .van-submit-bar__tip {
+    color: #000;
+  }
+}
+</style>
