@@ -2,7 +2,7 @@
   <div>
     <div
       class="tags are-medium is-center container"
-      style="font-size: 1rem; margin: 1rem; color: #999"
+      style="font-size: 0.9rem; margin: 1rem; color: #999"
     >
       <nuxt-link class="" :to="'/checkout/' + $route.params.cartId">
         <span

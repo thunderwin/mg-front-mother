@@ -107,8 +107,8 @@ export default {
 
 <style lang="scss">
 .checkout_line_item .van-card__title {
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 1.1rem;
+  line-height: 1.1rem;
   overflow: inherit;
 }
 </style>
