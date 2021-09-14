@@ -127,7 +127,7 @@
         closeable
         :duration="0.2"
         :position="'bottom'"
-        :style="{ height: '90%' }"
+        :style="{ height: '90%', zIndex: 100000 }"
       >
         <CartPopupCart />
       </van-popup>

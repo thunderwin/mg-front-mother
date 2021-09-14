@@ -198,3 +198,8 @@ textarea:focus {
 #tab2 {
   overflow-x: scroll;
 }
+
+.van-submit-bar__tip {
+  background-color: #fff !important;
+  padding: 0 !important;
+}

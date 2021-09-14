@@ -41,7 +41,7 @@
           </template>
         </van-image>
 
-        {{ category }}
+        <!-- {{ category }} -->
 
         <van-grid
           v-if="category.product_count > 0"

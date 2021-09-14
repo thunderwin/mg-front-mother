@@ -13,6 +13,8 @@ export const state = () => ({
   CMS: {},
   domain: "", // 当前的域名
 
+  scroll: 100, // 保存的滑动，
+
   showFilterPopup: false,
   showCartPopup: false,
   filter: "", // 当前的filter 需要持久保存
@@ -54,6 +56,11 @@ export const getters = {
 };
 
 export const mutations = {
+  setScroll(state, v) {
+    // 记录滚动距离
+    state.scroll = v;
+  },
+
   setFilterPopup(state, v) {
     state.showFilterPopup = v;
   },
@@ -109,7 +116,7 @@ export const actions = {
   ) {
     let host =
       process.env.NODE_ENV === "development"
-        ? "www.luckychique.com"
+        ? "www.ivchicy.com"
         : req.headers.host;
 
     let domain = host.split(".")[0];

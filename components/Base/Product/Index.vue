@@ -2,7 +2,7 @@
   <div class="product-all">
     <div class="">
       <!-- {{ x.imglist }} -->
-      <nuxt-link :to="localePath('/p') + '/' + x.sku">
+      <a @click="jump">
         <van-image fit="cover" :src="img" />
 
         <div class="" style="padding: 0.5rem 1rem 1rem 1rem">
@@ -51,7 +51,7 @@
             </div>
           </div>
         </div>
-      </nuxt-link>
+      </a>
     </div>
   </div>
 </template>
@@ -59,7 +59,20 @@
 <script>
 export default {
   name: "product-detail",
-  props: ["x"],
+  props: {
+    x: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+    isClickable: {
+      type: Boolean,
+      default() {
+        return true;
+      },
+    },
+  },
   data() {
     return {};
   },
@@ -77,6 +90,14 @@ export default {
 
           return this.x.image.url;
         }
+      }
+    },
+  },
+
+  methods: {
+    jump() {
+      if (this.isClickable) {
+        this.$router.push(this.localePath("/p") + "/" + this.x.sku);
       }
     },
   },
