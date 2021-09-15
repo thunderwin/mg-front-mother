@@ -103,7 +103,7 @@
               </button>
 
               <van-stepper
-                v-if="!simpleItem"
+                v-if="!simpleItem && !isAddingOrMoving"
                 style="flex-shrink: 0; margin-right: 1rem"
                 v-model="item.quantity"
                 input-width="3rem"
@@ -111,6 +111,7 @@
                 async-change
                 @change="onChange(item.id, item.quantity)"
               />
+              <van-button v-else loading type="default" loading-text="" />
             </div>
           </template>
         </van-card>
@@ -253,6 +254,8 @@ export default {
       editItem: "",
 
       isLoading: false,
+
+      isAddingOrMoving: false,
     };
   },
   methods: {
@@ -270,17 +273,21 @@ export default {
       }
     }, 1000),
 
-    removeItem(id) {
+    async removeItem(id) {
       this.isLoading = true;
-      this.$store.dispatch("cart/removeItemFromCart", { cart_item_id: id });
+      await this.$store.dispatch("cart/removeItemFromCart", {
+        cart_item_id: id,
+      });
       this.isLoading = false;
     },
 
-    addItem(id, qty) {
-      this.$store.dispatch("cart/updateCartItems", {
+    async addItem(id, qty) {
+      this.isAddingOrMoving = true;
+      await this.$store.dispatch("cart/updateCartItems", {
         cart_item_id: id,
         quantity: qty,
       });
+      this.isAddingOrMoving = false;
     },
   },
 };
