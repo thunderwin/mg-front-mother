@@ -1,7 +1,0 @@
-<svg id="Icon_close" data-name="Icon/close" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-  <g id="Group_5" data-name="Group 5" transform="translate(2 3)">
-    <path id="Path_1817" data-name="Path 1817" d="M5.031,4.845l10,10" transform="translate(-4.031 -4.845)" fill="none" stroke="#1b1c1e" stroke-linecap="round" stroke-width="2"/>
-    <path id="Path_1818" data-name="Path 1818" d="M0,0,10,10" transform="translate(11) rotate(90)" fill="none" stroke="#1b1c1e" stroke-linecap="round" stroke-width="2"/>
-  </g>
-  <rect id="Area_ICON:feather_menu_SIZE:LARGE_STYLE:STYLE1_" data-name="Area [ICON:feather/menu][SIZE:LARGE][STYLE:STYLE1]" width="16" height="16" fill="#fcfcfc" opacity="0"/>
-</svg>

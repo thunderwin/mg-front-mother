@@ -43,12 +43,16 @@
       >
         <van-grid-item v-for="(z, index) in categoryList" :key="index">
           <nuxt-link
-            class="shadow"
-            :to="localePath('/list') + '?category_id=' + x.id"
+            :style="{
+              backgroundColor: $store.state.S.mainBgColor,
+              padding: '1rem',
+            }"
+            class="shadow my-flex"
+            :to="localePath('/c') + '/' + z.id"
           >
-            <van-image width="100%" :src="z.image" />
+            <van-image width="4rem" :src="'/clothing/' + z.icon + '.svg'" />
 
-            <div class="subcate" style="padding: 1rem">
+            <div class="subcate">
               <div
                 class="is-centered is-capitalized is-size-5"
                 style="text-align: center; margin-top: 1rem"
@@ -76,8 +80,30 @@ export default {
   computed: {
     categoryList() {
       let menu = this.$store.state.menu;
+      let cate = menu.filter((z) => this.x.ids.includes(JSON.stringify(z.id)));
 
-      return menu.filter((z) => this.x.ids.includes(JSON.stringify(z.id)));
+      const avaliableIcons = [
+        "bottoms",
+        "coats",
+        "dresses",
+        "jumpsuits",
+        "sets",
+        "shorts",
+        "skirts",
+        "sweaters",
+        "t-shirts",
+      ];
+
+      cate = cate.map((x) => {
+        let iconIndex = avaliableIcons.indexOf(x.name.toLowerCase());
+        if (iconIndex > -1) {
+          x.icon = avaliableIcons[iconIndex];
+        }
+
+        return x;
+      });
+
+      return cate;
     },
   },
 };
