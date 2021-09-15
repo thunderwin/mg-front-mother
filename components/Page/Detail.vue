@@ -2,7 +2,10 @@
   <div id="detailTop">
     <DetailSlider style="overflow: hidden" :x="x" />
 
-    <div class="is-size-5 has-text-grey-dark" style="padding: 1rem 1rem 0 1rem">
+    <div
+      class="is-size-5 has-text-grey-dark"
+      style="padding: 0.5rem 1rem 0 1rem"
+    >
       {{ x.name }}
     </div>
 
