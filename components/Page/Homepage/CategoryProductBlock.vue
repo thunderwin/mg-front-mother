@@ -43,21 +43,23 @@
 
         <!-- {{ category }} -->
 
-        <van-grid
-          v-if="category.products"
-          :border="false"
-          :center="false"
-          :column-num="6"
-          :gutter="20"
-          :clickable="true"
-        >
-          <van-grid-item
-            v-for="(z, index) in category.products.items"
-            :key="index"
+        <div class="container">
+          <van-grid
+            v-if="category.products"
+            :border="false"
+            :center="false"
+            :column-num="6"
+            :gutter="20"
+            :clickable="true"
           >
-            <BaseProduct :x="z" />
-          </van-grid-item>
-        </van-grid>
+            <van-grid-item
+              v-for="(z, index) in category.products.items"
+              :key="index"
+            >
+              <BaseProduct class="shadow" :x="z" />
+            </van-grid-item>
+          </van-grid>
+        </div>
       </div>
     </div>
   </div>
