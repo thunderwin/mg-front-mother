@@ -32,8 +32,8 @@
       </div>
 
       <BaseShowItemPrice
-        v-if="x.price_range"
-        :price_range="x.price_range"
+        v-if="x"
+        :x="x"
         :fontSize="4"
         style="padding: 0 1rem"
       />
@@ -99,11 +99,7 @@
             @goAddReview="scrollToId('#leave_review')"
           />
 
-          <BaseShowItemPrice
-            v-if="x.price_range"
-            :price_range="x.price_range"
-            :fontSize="4"
-          />
+          <BaseShowItemPrice v-if="x.price_range" :x="x" :fontSize="4" />
 
           <div class="action-area" v-if="isSpecialItem === 'nomal'">
             <DetailCustomWrapper
@@ -297,6 +293,9 @@ export default {
     return false; // 参数无效，Nuxt.js 停止渲染当前页面并显示错误页面
   },
 
+  mounted() {
+    // console.log(this.$route);
+  },
   // middleware: ["auth"],
   data() {
     return {

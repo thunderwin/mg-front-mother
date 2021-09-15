@@ -98,28 +98,28 @@
           </div>
         </div>
 
-        <div class="dropdown-menu" role="menu" style="width: 100%">
+        <div
+          class="dropdown-menu"
+          v-if="showMenus.children.length > 0"
+          role="menu"
+          style="width: 100%"
+        >
           <div class="dropdown-content">
-            <div class="container my-flex">
+            <div class="container">
               <div class="sub-categoryss">
                 <!-- {{ showMenus }} -->
-                <div
-                  class="is-capitalized"
-                  v-if="showMenus.children.length > 0"
-                >
-                  <nuxt-link
-                    v-for="(y, yindex) in showMenus.children"
-                    :key="yindex"
-                    :to="localePath('/c') + '/' + y.id"
-                    class="navbar-item navbar-link"
-                  >
-                    {{ y.name }}
-                  </nuxt-link>
+                <div class="is-capitalized">
+                  <van-grid gutter="20" :border="false" :column-num="8" center>
+                    <van-grid-item
+                      :to="localePath('/c') + '/' + y.id"
+                      v-for="(y, yindex) in showMenus.children"
+                      :key="yindex"
+                    >
+                      <van-image :src="y.img" />
+                      {{ y.name }}
+                    </van-grid-item>
+                  </van-grid>
                 </div>
-              </div>
-              <div class="hot-items">
-                <!-- {{ firstThreeMenu }} -->
-                <!-- <BaseProductSwiperRow :products="showItems.items" /> -->
               </div>
             </div>
           </div>

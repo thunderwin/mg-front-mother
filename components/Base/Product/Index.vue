@@ -39,11 +39,7 @@
             </div>
 
             <div class="price-sum has-text-dark" style="margin-top: 0.2rem">
-              <BaseShowItemPrice
-                v-if="x.price_range"
-                :fontSize="6"
-                :price_range="x.price_range"
-              />
+              <BaseShowItemPrice v-if="x" :x="x" />
             </div>
           </div>
         </div>

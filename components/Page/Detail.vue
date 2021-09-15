@@ -30,12 +30,7 @@
       </a>
     </div>
 
-    <BaseShowItemPrice
-      v-if="x.price_range"
-      :price_range="x.price_range"
-      :fontSize="4"
-      style="padding: 0 1rem"
-    />
+    <BaseShowItemPrice v-if="x" :x="x" style="padding: 0 1rem" />
 
     <!-- // 简单描述 -->
     <div

@@ -5,7 +5,7 @@
     }"
   >
     <div
-      v-if="price_range"
+      v-if="x.price_range"
       style="justify-content: flex-start; padding: 0"
       class="price-center my-flex"
     >
@@ -13,21 +13,38 @@
         {{ curr }}
       </div>
 
-      <div :class="' is-size-' + fontSize">
-        {{ price_range.minimum_price.final_price.value }}
+      <div :class="'is-size-' + fontSize">
+        {{ x.price_range.minimum_price.final_price.value }}
       </div>
+    </div>
+
+    <div class="showPrice">
+      {{ x.show_price }}
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["price_range", "fontSize"],
+  props: {
+    x: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+
+    fontSize: {
+      type: Number,
+      default() {
+        return 6;
+      },
+    },
+  },
   computed: {
     curr() {
-      return this.price_range.minimum_price.final_price.currency === "USD"
-        ? "$"
-        : this.price_range.minimum_price.final_price.currency;
+      let cu = this.x.price_range.minimum_price.final_price.currency;
+      return cu === "USD" ? "$" : cu;
     },
   },
 };

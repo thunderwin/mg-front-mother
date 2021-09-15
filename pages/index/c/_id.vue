@@ -234,9 +234,27 @@ export default {
       return true;
     },
     openDetail(x) {
-      this.showDetail = true;
-      this.showOptionChoosen = false; //
-      this.injectDetail = x;
+      if (this.$device.isMobileOrTablet) {
+        this.showDetail = true;
+        this.showOptionChoosen = false; //
+        this.injectDetail = x;
+      }
+
+      if (this.$device.isDesktop) {
+        // PC 下打开新窗口
+        console.log("%c this.routername", "color:green;font-weight:bold");
+        console.log(this.$route);
+
+        let routeData = this.$router.resolve({
+          name: "index-p-sku___en",
+          params: { sku: x.sku },
+        });
+
+        // console.log("%c routeData", "color:green;font-weight:bold");
+        // console.log(routeData);
+
+        window.open(routeData.href, "_blank");
+      }
     },
     async loadMore(e) {
       this.loading = true;
