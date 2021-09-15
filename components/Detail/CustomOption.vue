@@ -2,7 +2,7 @@
   <div>
     <div class="buttons" style="width: 100%">
       <div
-        style="margin: 1rem 1rem 0 0"
+        style="margin: 0.5rem 1rem 0 0"
         v-for="(x, xindex) in options"
         :key="xindex"
       >

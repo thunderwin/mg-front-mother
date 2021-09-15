@@ -53,6 +53,16 @@
       style="padding: 1rem"
     />
 
+    <div class="container detail_desc" style="padding: 1rem">
+      <div
+        style=""
+        id="review"
+        v-if="x.description"
+        class="desc"
+        v-html="x.description.html"
+      ></div>
+    </div>
+
     <van-cell-group>
       <van-cell
         title="Shipping"

@@ -89,7 +89,7 @@
 
       <van-col span="12">
         <div class="right" style="padding: 1rem">
-          <div class="is-size-3 has-text-grey-dark">
+          <div class="is-size-4 has-text-grey-dark">
             {{ x.name }}
           </div>
 

@@ -107,11 +107,17 @@
                 style="flex-shrink: 0; margin-right: 1rem"
                 v-model="item.quantity"
                 input-width="3rem"
-                button-size="2.5rem"
+                button-size="2.6rem"
                 async-change
                 @change="onChange(item.id, item.quantity)"
               />
-              <van-button v-else loading type="default" loading-text="" />
+              <van-button
+                v-else
+                loading
+                disabled
+                type="default"
+                loading-text="Loading.."
+              />
             </div>
           </template>
         </van-card>

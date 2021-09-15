@@ -44,7 +44,7 @@
         <!-- {{ category }} -->
 
         <van-grid
-          v-if="category.product_count > 0"
+          v-if="category.products"
           :border="false"
           :center="false"
           :column-num="6"

@@ -110,7 +110,7 @@
                   <nuxt-link
                     v-for="(y, yindex) in showMenus.children"
                     :key="yindex"
-                    :to="localePath('/list') + '?category_id=' + y.id"
+                    :to="localePath('/c') + '/' + y.id"
                     class="navbar-item navbar-link"
                   >
                     {{ y.name }}

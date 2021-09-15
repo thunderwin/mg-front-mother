@@ -18,19 +18,7 @@
 
         <div class="" style="padding: 0.2rem 0.8rem 0.5rem 0.8rem">
           <div class="">
-            <div
-              class=""
-              style="
-                color: #767676;
-                text-overflow: -o-ellipsis-lastline;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 1;
-                -webkit-box-orient: vertical;
-                font-size: 13px;
-              "
-            >
+            <div class="base_item_price" style="">
               {{ x.name }}
             </div>
 
@@ -111,3 +99,16 @@ export default {
   },
 };
 </script>
+
+<style>
+.base_item_price {
+  color: #767676;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-size: 13px;
+}
+</style>
