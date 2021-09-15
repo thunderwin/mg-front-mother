@@ -3,7 +3,7 @@
     <!-- {{ this.cart }} -->
     <div class="eye-catcher">
       <div v-if="total < 69" class="catcher-row warnbox">
-        ❗Just buy ${{ 69 - total }} more to get
+        ❗Just buy ${{ (69 - total).toFixed(2) }} more to get
         <span style="font-weight: bold">$8</span> OFF!
       </div>
 
@@ -12,7 +12,7 @@
       </div>
 
       <div v-if="total >= 69 && total < 99" class="catcher-row warnbox">
-        ❗Buy another ${{ 99 - total }} to get
+        ❗Buy another ${{ (99 - total).toFixed(2) }} to get
         <span style="font-weight: bold">$15</span>
         OFF!
       </div>
@@ -22,7 +22,7 @@
       </div>
 
       <div v-if="total >= 99 && total < 149" class="catcher-row warnbox">
-        ❗Buy another ${{ 149 - total }} to get
+        ❗Buy another ${{ (149 - total).toFixed(2) }} to get
         <span style="font-weight: bold">$30</span> OFF!
       </div>
 

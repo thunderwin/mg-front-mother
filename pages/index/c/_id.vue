@@ -66,8 +66,8 @@
       v-model="showDetail"
       :lock-scroll="true"
       :safe-area-inset-bottom="true"
-      position="center"
-      duration="0"
+      get-container="body"
+      :duration="0.1"
       :style="{ height: '100%', width: '100%' }"
     >
       <PageDetail ref="productdetail" :x="injectDetail" />

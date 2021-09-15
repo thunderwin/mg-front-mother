@@ -366,6 +366,7 @@ export default {
 
       this.scrollToId("#reviews");
     },
+
     scrollToId(item) {
       console.log("%c ?", "color:green;font-weight:bold");
       console.log(JSON.stringify());
@@ -377,6 +378,7 @@ export default {
         window.scrollTo(0, anchor.offsetTop); //滚动距离因为导航栏固定定位130px的高度
       });
     },
+
     async addToCart() {
       let chosenOption; // 自定义属性
 

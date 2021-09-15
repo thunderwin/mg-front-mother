@@ -2,8 +2,7 @@
   <div class="">
     <div>
       <div class="container" style="max-width: 1000px">
-        <CommonHeaderLogo />
-
+        <CheckoutNiceHeader />
         <CheckoutSteps />
 
         <!-- <div class="is-size-4 is-capitalized" style="margin: 1rem 0">

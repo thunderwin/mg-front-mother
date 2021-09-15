@@ -16,9 +16,21 @@
           </template>
         </van-image>
 
-        <div class="" style="padding: 0.5rem 1rem 1rem 1rem">
+        <div class="" style="padding: 0.2rem 0.8rem 0.5rem 0.8rem">
           <div class="">
-            <div class="is-size-6 van-multi-ellipsis--l2 has-text-grey">
+            <div
+              class=""
+              style="
+                color: #767676;
+                text-overflow: -o-ellipsis-lastline;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                font-size: 13px;
+              "
+            >
               {{ x.name }}
             </div>
 

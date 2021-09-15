@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div id="detailTop">
     <DetailSlider style="overflow: hidden" :x="x" />
 
-    <div class="is-size-4 has-text-grey-dark" style="padding: 1rem 1rem 0 1rem">
+    <div class="is-size-5 has-text-grey-dark" style="padding: 1rem 1rem 0 1rem">
       {{ x.name }}
     </div>
 
@@ -50,21 +50,35 @@
       style="padding: 1rem"
     />
 
+    <van-cell-group>
+      <van-cell
+        title="Shipping"
+        @click="descriptionClick"
+        is-link
+        value="内容"
+      />
+      <van-cell-group>
+        <van-cell
+          title="Return policy"
+          @click="descriptionClick"
+          is-link
+          value="内容"
+        />
+      </van-cell-group>
+      <van-cell
+        title="Description"
+        @click="descriptionClick"
+        is-link
+        value="内容"
+      />
+    </van-cell-group>
+
     <DetailAttList
       class="van-hairline--bottom text-capitalize"
       style="padding: 1rem"
       v-if="x.atts && x.atts.length > 0"
       :atts="x.atts"
     />
-    <div class="container detail_desc" style="padding: 1rem">
-      <div
-        style=""
-        id="review"
-        v-if="x.description"
-        class="desc"
-        v-html="x.description.html"
-      ></div>
-    </div>
 
     <!-- <van-goods-action
       v-if="$device.isMobileOrTablet && isSpecialItem === 'nomal'"
@@ -83,12 +97,31 @@
         style="font-weight: bold"
       />
     </van-goods-action> -->
+
+    <van-popup
+      closeable
+      v-model="showDesc"
+      :lock-scroll="true"
+      :safe-area-inset-bottom="true"
+      get-container="body"
+      position="bottom"
+      :duration="0.1"
+      :style="{ height: '80%', width: '100%' }"
+    >
+      <div class="container detail_desc" style="padding: 1rem">
+        <div
+          style=""
+          id="review"
+          v-if="x.description"
+          class="desc"
+          v-html="x.description.html"
+        ></div>
+      </div>
+    </van-popup>
   </div>
 </template>
 
 <script>
-// import AgoraRTM from "@/static/js/agora-rtm-sdk-1.4.2.js";
-
 export default {
   props: ["x"],
 
@@ -98,6 +131,7 @@ export default {
       activeTab: 0,
 
       addingCart: false,
+      showDesc: false,
     };
   },
   computed: {
@@ -126,23 +160,16 @@ export default {
   },
 
   methods: {
+    descriptionClick() {
+      this.showDesc = true;
+    },
     goReview() {
       console.log("%c ????", "color:green;font-weight:bold");
       console.log(JSON.stringify());
 
       this.scrollToId("#reviews");
     },
-    scrollToId(item) {
-      console.log("%c ?", "color:green;font-weight:bold");
-      console.log(JSON.stringify());
 
-      // let idItem = document.getElementById(item);
-      let anchor = this.$el.querySelector(item); //计算传进来的id到顶部的距离
-      this.$nextTick(() => {
-        // console.log(anchor.offsetTop)
-        window.scrollTo(0, anchor.offsetTop); //滚动距离因为导航栏固定定位130px的高度
-      });
-    },
     async addToCart() {
       let chosenOption; // 自定义属性
 
