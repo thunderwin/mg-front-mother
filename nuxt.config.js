@@ -266,14 +266,14 @@ export default {
       // changeOrigin: true,
       pathRewrite: { "^/api/": "" },
     },
-    "/aws/": {
-      target: "https://shopify.s3.amazonaws.com/tmp/",
-      pathRewrite: { "^/aws/": "" },
-    },
-    // "/dis/": {
-    //   target: "https://www.thousandcountry.com/",
-    //   pathRewrite: { "^/dis/": "" },
+    // "/aws/": {
+    //   target: "https://shopify.s3.amazonaws.com/tmp/",
+    //   pathRewrite: { "^/aws/": "" },
     // },
+    "/cloud/": {
+      target: "https://gudao-img.oss-us-west-1.aliyuncs.com/",
+      pathRewrite: { "^/cloud/": "" },
+    },
   },
   /*
    ** Build configuration

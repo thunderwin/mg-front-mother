@@ -255,7 +255,7 @@
       <div class="">
         <div class="is-size-4 has-text-centered">Leave review</div>
         <client-only>
-          <DetailReviewAddReview />
+          <DetailReviewAddReview :sku="$route.params.sku" />
         </client-only>
       </div>
     </section>
