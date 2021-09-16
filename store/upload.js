@@ -1,5 +1,3 @@
-const COS = require("cos-js-sdk-v5");
-
 export const actions = {
   async genUploadToken({ commit, dispatch, state }, files) {
     let r = await this.$axios.post(

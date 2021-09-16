@@ -252,6 +252,14 @@
       id="leave_review"
       style="margin-top: 30px; max-width: 600px; margin: 30px auto"
     >
+      <CommonCoolReview />
+    </section>
+
+    <section
+      class=""
+      id="leave_review"
+      style="margin-top: 30px; max-width: 600px; margin: 30px auto"
+    >
       <div class="">
         <div class="is-size-4 has-text-centered">Leave review</div>
         <client-only>
