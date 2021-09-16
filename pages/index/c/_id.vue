@@ -5,10 +5,9 @@
         <section :class="$device.isDesktop ? 'section' : ''">
           <div class="container">
             <content-placeholders rounded style="padding: 1rem 1rem">
-              <content-placeholders-text :lines="1" />
-              <content-placeholders-text :lines="5" />
+              <content-placeholders-text :lines="2" />
 
-              <content-placeholders-img />
+              <content-placeholders-img style="height: 50px" />
             </content-placeholders>
 
             <PageCategoryItemPlaceholder slot="loading" />

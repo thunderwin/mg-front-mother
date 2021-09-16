@@ -53,7 +53,7 @@
                     : item.prices.price.currency
                 }}</span>
                 <span
-                  >{{ item.prices.price.value.toFixed(2) }}
+                  >{{ item.prices.price.value.toFixed(0) }}
                   <span class="has-text-grey">x {{ item.quantity }}</span>
                 </span>
               </div>
@@ -80,7 +80,7 @@
               </div>
               <div style="font-size: 1.3rem; flex-shrink: 0" class="pricr">
                 {{ currency }}
-                {{ (item.prices.price.value * item.quantity).toFixed(2) }}
+                {{ (item.prices.price.value * item.quantity).toFixed(0) }}
               </div>
 
               <!-- <van-icon
@@ -160,7 +160,7 @@
                 : item.prices.price.currency
             }}
 
-            {{ (item.prices.price.value * item.quantity).toFixed(2) }}
+            {{ (item.prices.price.value * item.quantity).toFixed(0) }}
           </div>
         </div>
       </div>

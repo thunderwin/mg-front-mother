@@ -116,7 +116,7 @@ export const actions = {
   ) {
     let host =
       process.env.NODE_ENV === "development"
-        ? "www.luckychique.com"
+        ? "www.ivchicy.com"
         : req.headers.host;
 
     let domain = host.split(".")[0];

@@ -12,7 +12,7 @@
                 : "cart.prices.grand_total.currency"
             }}</span
           >
-          <span>{{ cart.prices.subtotal_including_tax.value }}</span>
+          <span>{{ cart.prices.subtotal_including_tax.value.toFixed(0) }}</span>
         </div>
       </div>
 
@@ -36,7 +36,7 @@
                   : "cart.prices.grand_total.currency"
               }}</span
             >
-            <span> {{ dis.amount.value }} </span>
+            <span> {{ dis.amount.value.toFixed(0) }} </span>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
                 : "cart.prices.grand_total.currency"
             }}</span
           >
-          <span>{{ cart.prices.grand_total.value }}</span>
+          <span>{{ cart.prices.grand_total.value.toFixed(0) }}</span>
         </div>
       </div>
     </div>

@@ -55,8 +55,8 @@
         <div class="my-flex container">
           <CommonHeaderLogo />
 
-          <div class="slogon is-size-5 has-text-weight-bold">
-            Free Shipping over $75
+          <div class="slogon has-text-weight-bold">
+            <CommonHeaderSlogan />
           </div>
 
           <div class="right-header has-text-weight-bold is-capitalized my-flex">

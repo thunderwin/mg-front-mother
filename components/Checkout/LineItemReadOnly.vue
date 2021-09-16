@@ -42,7 +42,7 @@
                   : item.prices.price.currency
               }}</span>
               <span
-                >{{ item.prices.price.value.toFixed(2) }}
+                >{{ item.prices.price.value.toFixed(0) }}
                 <span class="has-text-grey">x {{ item.quantity }}</span>
               </span>
             </div>

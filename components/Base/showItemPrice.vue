@@ -2,7 +2,10 @@
   <div
     :style="{
       color: $store.state.S.BaseShowItemPrice,
+      fontWeight: 'bold',
     }"
+    class="my-flex"
+    style="justify-content: flex-start"
   >
     <div
       v-if="x.price_range"
@@ -14,12 +17,17 @@
       </div>
 
       <div :class="'is-size-' + fontSize">
-        {{ x.price_range.minimum_price.final_price.value }}
+        {{ realPrice.toFixed(0) }}
       </div>
     </div>
 
-    <div class="showPrice">
-      {{ x.show_price }}
+    <div
+      class="showPrice"
+      :class="'is-size-' + (fontSize + 1)"
+      style="text-decoration: line-through; margin-left: 0.5rem"
+    >
+      {{ curr }}
+      {{ (x.show_price ? x.show_price : realPrice * 1.6).toFixed(0) }}
     </div>
   </div>
 </template>
@@ -45,6 +53,9 @@ export default {
     curr() {
       let cu = this.x.price_range.minimum_price.final_price.currency;
       return cu === "USD" ? "$" : cu;
+    },
+    realPrice() {
+      return this.x.price_range.minimum_price.final_price.value;
     },
   },
 };
