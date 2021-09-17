@@ -15,22 +15,30 @@
           class="is-medium"
         />
 
-        <van-uploader
+        <!-- <van-uploader
           multiple
           accept="image/png, image/jpeg,image/jpg "
           :after-read="afterRead"
           :before-read="beforeRead"
           v-model="fileList"
-        />
+        /> -->
 
         <FormulateInput
-          name="summary"
+          name="review_title"
           label="Summary"
           validation="required"
           class="is-medium"
         />
 
         <FormulateInput
+          name="files"
+          type="file"
+          label="imglist"
+          validation="mime:image/jpeg,image/png,image/gif"
+          class="is-medium"
+        />
+
+        <!-- <FormulateInput
           v-for="(rank, index) in rankMeta"
           :key="index"
           :name="rank.id"
@@ -41,17 +49,17 @@
           :label="rank.name"
           validation="required"
           class="is-medium"
-        />
+        /> -->
 
         <!-- {{ rankMeta }} -->
 
-        <FormulateInput
+        <!-- <FormulateInput
           name="text"
           type="textarea"
           label="Content"
           validation="required"
           class="is-medium"
-        />
+        /> -->
 
         <FormulateErrors />
       </FormulateForm>
@@ -103,6 +111,13 @@ export default {
     async submit(e) {
       console.log("%c e", "color:green;font-weight:bold");
       console.log(JSON.stringify(e));
+
+      let rr = await this.$axios.post("/space/upload/", e);
+
+      console.log("%c r", "color:green;font-weight:bold");
+      console.log(JSON.stringify(rr));
+
+      return;
 
       this.isLoading = true;
 

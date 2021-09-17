@@ -266,10 +266,10 @@ export default {
       // changeOrigin: true,
       pathRewrite: { "^/api/": "" },
     },
-    // "/aws/": {
-    //   target: "https://shopify.s3.amazonaws.com/tmp/",
-    //   pathRewrite: { "^/aws/": "" },
-    // },
+    "/space/": {
+      target: "https://strapi-cmad.onrender.com/",
+      pathRewrite: { "^/space/": "" },
+    },
     "/cloud/": {
       target: "https://gudao-img.oss-us-west-1.aliyuncs.com/",
       pathRewrite: { "^/cloud/": "" },

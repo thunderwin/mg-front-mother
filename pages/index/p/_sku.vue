@@ -10,6 +10,8 @@
         {{ x.name }}
       </div>
 
+      <div class="yotpo bottomLine" data-yotpo-product-id="10"></div>
+
       <div class="review_summy" style="padding: 0 1rem">
         <div
           v-if="!!x.review_count"
@@ -93,6 +95,8 @@
             {{ x.name }}
           </div>
 
+          <div class="yotpo bottomLine" data-yotpo-product-id="10"></div>
+
           <DetailReviewIntro
             :x="x"
             @goReview="scrollToId('#reviews')"
@@ -157,9 +161,9 @@
     </van-row>
 
     <!-- 如果有视频 -->
-    <section v-if="videos.length > 0" class="section video-wrapper">
+    <!-- <section v-if="videos.length > 0" class="section video-wrapper">
       <DetailVideoWrapper class="container" :videoList="videos" />
-    </section>
+    </section> -->
 
     <!--
     <section class="section">
@@ -247,13 +251,13 @@
       </div>
     </section>
 
-    <section
+    <!-- <section
       class=""
       id="leave_review"
       style="margin-top: 30px; max-width: 600px; margin: 30px auto"
     >
       <CommonCoolReview />
-    </section>
+    </section> -->
 
     <section
       class=""

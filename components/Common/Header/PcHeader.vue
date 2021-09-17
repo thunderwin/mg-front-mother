@@ -114,8 +114,19 @@
                       :to="localePath('/c') + '/' + y.id"
                       v-for="(y, yindex) in showMenus.children"
                       :key="yindex"
+                      style="cursor: pointer"
                     >
-                      <van-image :src="y.img" />
+                      <van-image
+                        height="auto"
+                        width="100%"
+                        lazy-load
+                        fit="contain"
+                        :src="y.img"
+                      >
+                        <template v-slot:loading>
+                          <van-loading type="spinner" size="20" />
+                        </template>
+                      </van-image>
                       {{ y.name }}
                     </van-grid-item>
                   </van-grid>
