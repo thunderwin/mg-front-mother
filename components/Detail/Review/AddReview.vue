@@ -31,7 +31,7 @@
         />
 
         <FormulateInput
-          name="files"
+          name=""
           type="file"
           label="imglist"
           validation="mime:image/jpeg,image/png,image/gif"
@@ -111,13 +111,6 @@ export default {
     async submit(e) {
       console.log("%c e", "color:green;font-weight:bold");
       console.log(JSON.stringify(e));
-
-      let rr = await this.$axios.post("/space/upload/", e);
-
-      console.log("%c r", "color:green;font-weight:bold");
-      console.log(JSON.stringify(rr));
-
-      return;
 
       this.isLoading = true;
 

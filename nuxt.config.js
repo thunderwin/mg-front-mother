@@ -267,7 +267,10 @@ export default {
       pathRewrite: { "^/api/": "" },
     },
     "/space/": {
-      target: "https://strapi-cmad.onrender.com/",
+      target:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:1337/"
+          : "https://strapi-cmad.onrender.com/",
       pathRewrite: { "^/space/": "" },
     },
     "/cloud/": {
