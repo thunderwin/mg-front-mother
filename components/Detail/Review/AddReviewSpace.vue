@@ -2,12 +2,44 @@
   <div>
     <client-only>
       <section class="section is-capitalized">
+        <!-- {{ formValues }} -->
         <FormulateForm
           :form-errors="formErrors"
           v-model="formValues"
           name="add-review"
           @submit="submitSpace"
         >
+          <FormulateInput
+            name="user_avatar"
+            type="image"
+            label="Avatar"
+            validation="mime:image/jpeg,image/png,image/gif"
+            class="is-medium"
+          />
+
+          <div class="modify_review" v-if="!$route.query.hanelReview">
+            <FormulateInput
+              name="votes_up"
+              type="number"
+              label="votes up"
+              validation="required|number|between:0,1000"
+              class="is-medium"
+            />
+            <FormulateInput
+              name="votes_down"
+              type="number"
+              validation="required|number|between:0,500"
+              label="votes down"
+              class="is-medium"
+            />
+            <FormulateInput
+              name="verified_buyer"
+              type="checkbox"
+              label="Verified buyer"
+              class="is-medium"
+            />
+          </div>
+
           <FormulateInput
             name="display_name"
             label="Nickname"

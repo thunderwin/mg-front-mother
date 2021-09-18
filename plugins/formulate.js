@@ -4,12 +4,14 @@ import axios from "axios";
 import VueFormulate from "@braid/vue-formulate";
 import { en, zh } from "@braid/vue-formulate-i18n";
 
-const axiosInstance = axios.create({
-  baseURL:
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:1337"
-      : "https://strapi-cmad.onrender.com",
-});
+const baseURL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:1337"
+    : "https://strapi-cmad.onrender.com";
+
+// const axiosInstance = axios.create({
+//   baseURL
+// });
 
 Vue.use(VueFormulate, {
   plugins: [en, zh],
@@ -22,21 +24,19 @@ Vue.use(VueFormulate, {
     },
   },
   library: {},
-  uploader: axiosInstance,
-  uploadUrl: "/upload",
+  // uploader: axiosInstance,
+  // uploadUrl: "/upload",
 
-  // uploader: async function (file, progress, error, options) {
-  //   try {
-  //     const formData = new FormData()
-  //     formData.append('file', file)
-  //     const result = await fetch(options.uploadUrl, {
-  //       method: 'POST',
-  //       body: formData
-  //     })
-  //     progress(100) // (native fetch doesn’t support progress updates)
-  //     return await result.json()
-  //   } catch (err) {
-  //     error('Unable to upload file')
-  //   }
-  // }
+  uploader: async function (file, progress, error, options) {
+    try {
+      const formData = new FormData();
+      formData.append("files", file); // 名字必须为 files
+
+      const { data: result } = await axios.post(`${baseURL}/upload`, formData);
+      progress(100); // (native fetch doesn’t support progress updates)
+      return result;
+    } catch (err) {
+      error("Unable to upload file");
+    }
+  },
 });

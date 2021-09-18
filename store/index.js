@@ -4,6 +4,11 @@ export const state = () => ({
   }, // config 店铺核心设置
   S: {}, // 店铺核心样式和板块配置
 
+  strapi_url:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:1337"
+      : "https://strapi-cmad.onrender.com",
+
   menu: [],
   flatMenu: [], // 扁平化的菜单
   availableStores: [],

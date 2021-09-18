@@ -196,13 +196,7 @@
 
     <LazyDetailRelatedProduct style="" :catgoryIds="x.categories" />
 
-    <section
-      class=""
-      id="reviews"
-      style="margin-top: 30px; max-width: 600px; margin: 30px auto"
-    >
-      <LazyDetailReviewListReviewSpace :sku="$route.params.sku" />
-    </section>
+    <LazyDetailReviewListReviewSpace :sku="$route.params.sku" />
 
     <section
       class=""
