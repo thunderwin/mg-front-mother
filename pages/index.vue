@@ -1,13 +1,7 @@
 <template>
   <div class="">
     <div>
-      <div class="van-hairline--bottom">
-        <CommonHeader class="van-hairline--bottom" />
-      </div>
-
       <nuxt-child></nuxt-child>
-
-      <CommonFooter />
     </div>
   </div>
 </template>

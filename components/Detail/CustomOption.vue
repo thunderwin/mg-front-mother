@@ -6,7 +6,8 @@
         v-for="(x, xindex) in options"
         :key="xindex"
       >
-        <div
+        <van-button
+          type="default"
           style="font-size: 1rem; color: #333"
           class="button is-capitalized is-light"
           :style="{
@@ -15,7 +16,7 @@
           @click="click(x.option_type_id)"
         >
           {{ x.title }}
-        </div>
+        </van-button>
       </div>
     </div>
   </div>

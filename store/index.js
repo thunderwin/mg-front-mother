@@ -18,7 +18,7 @@ export const state = () => ({
   CMS: {},
   domain: "", // 当前的域名
 
-  scroll: 100, // 保存的滑动，
+  scroll: 0, // 保存的滑动，
 
   showFilterPopup: false,
   showCartPopup: false,

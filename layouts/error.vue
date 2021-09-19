@@ -1,11 +1,5 @@
 <template>
   <div class="">
-    <van-sticky>
-      <div class="van-hairline--bottom">
-        <CommonHeader class="van-hairline--bottom" />
-      </div>
-    </van-sticky>
-
     <div class="container" style="padding: 1rem">
       <h1 class="" v-if="error.statusCode === 404">Page not found</h1>
       <h1 v-else>{{ error.message }}</h1>

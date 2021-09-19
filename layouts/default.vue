@@ -9,7 +9,12 @@
         ',DM Sans, system-ui, -apple-system, Segoe UI, Roboto !important;',
     }"
   >
-    <Nuxt />
+    <div class="van-hairline--bottom">
+      <CommonHeader class="van-hairline--bottom" />
+    </div>
+    <Nuxt keep-alive :keep-alive-props="{ include: ['product-list-page'] }" />
+
+    <CommonFooter />
   </div>
 </template>
 

@@ -62,6 +62,7 @@
 
     <van-popup
       closeable
+      v-if="showDetail"
       v-model="showDetail"
       :lock-scroll="true"
       :safe-area-inset-bottom="true"
@@ -69,7 +70,8 @@
       :duration="0.1"
       :style="{ height: '100%', width: '100%' }"
     >
-      <PageDetail ref="productdetail" :x="injectDetail" />
+      <DetailWrapper ref="productdetail" :x="injectDetail" />
+      <div class="spacer"></div>
     </van-popup>
 
     <van-submit-bar
@@ -151,29 +153,36 @@ export default {
       currentPage: 1,
     };
   },
-  // mounted() {
-  //   let scroll = this.$store.state.scroll;
-
-  //   console.log("%c mounted", "color:green;font-weight:bold");
-  //   console.log(JSON.stringify(scroll));
-
-  //   if (scroll > 0) {
-  //     window.scrollTo(0, scroll);
-  //   }
+  mounted() {
+    // this.scrollBackLastPostion();
+  },
+  // watch: {
+  //   "$route.params.id": function (id) {
+  //     console.log("%c id", "color:green;font-weight:bold");
+  //     console.log(JSON.stringify(id));
+  //     this.currentPage = 1;
+  //     this.list = [];
+  //     this.categorys = {};
+  //     this.$fetch();
+  //   },
   // },
 
-  watch: {
-    "$route.params.id": function (id) {
-      console.log("%c id", "color:green;font-weight:bold");
-      console.log(JSON.stringify(id));
-      this.currentPage = 1;
-      this.list = [];
-      this.categorys = {};
-      this.$fetch();
-    },
-  },
-
   methods: {
+    scrollBackLastPostion() {
+      let scroll = this.$store.state.scroll;
+
+      console.log("%c mounted", "color:green;font-weight:bold");
+      console.log(JSON.stringify(scroll));
+
+      if (scroll > 0) {
+        console.log("%c 没执行？", "color:green;font-weight:bold");
+        console.log(JSON.stringify());
+
+        this.$nextTick(() => {
+          window.scrollTo(0, scroll);
+        });
+      }
+    },
     clickCart() {
       this.showDetail = false;
       this.$store.commit("setCartPopup", true);
@@ -233,6 +242,22 @@ export default {
       return true;
     },
     openDetail(x) {
+      let crollHeight = document.documentElement.scrollTop;
+
+      this.$store.commit("setScroll", crollHeight);
+
+      console.log("%c 离开之前的位置", "color:green;font-weight:bold");
+      console.log(JSON.stringify(crollHeight));
+
+      this.$router.push("/p" + "/" + x.sku);
+
+      return;
+
+      // console.log("%c crollHeight", "color:green;font-weight:bold");
+      // console.log(JSON.stringify(crollHeight));
+
+      // return;
+
       if (this.$device.isMobileOrTablet) {
         this.showDetail = true;
         this.showOptionChoosen = false; //
@@ -252,55 +277,59 @@ export default {
         // console.log("%c routeData", "color:green;font-weight:bold");
         // console.log(routeData);
 
-        window.open(routeData.href, "_blank");
+        window.open(routeData.href);
       }
+    },
+
+    async loadingMoreItem() {
+      let categoryId = this.$route.params.id;
+
+      let categoryPayload = {
+        filters: {
+          ids: {
+            in: [categoryId],
+          },
+        },
+        pageSize: 18,
+        currentPage: this.currentPage,
+        search: "",
+        sort: {
+          price: "DESC",
+        },
+      };
+
+      // 🌶️
+      let r = await this.$store.dispatch("category/list", categoryPayload);
+      // console.log("%c 拿到的产品和子分类", "color:green;font-weight:bold");
+      // console.log(JSON.stringify(r));
+
+      this.categorys = r.categoryList[0]; // 这里是数组
+      let pageInfo = this.categorys.products.page_info;
+      this.pageInfo = pageInfo;
+      console.log("%c 当前页", "color:green;font-weight:bold");
+      console.log(JSON.stringify(pageInfo.current_page));
+      console.log("%c 一共多少页", "color:green;font-weight:bold");
+      console.log(JSON.stringify(pageInfo.total_pages));
+      console.log("%c 是否完成", "color:green;font-weight:bold");
+      console.log(JSON.stringify(this.finished));
+      if (pageInfo.current_page === pageInfo.total_pages) {
+        this.finished = true;
+        return;
+      }
+
+      this.list = this.list.concat(r.categoryList[0].products.items);
     },
     async loadMore(e) {
       this.loading = true;
       this.currentPage += 1;
       console.log("%c 触发下拉加载", "color:green;font-weight:bold");
-      await this.$fetch();
+      await this.loadingMoreItem();
       this.loading = false;
     },
   },
 
   async fetch() {
-    let categoryId = this.$route.params.id;
-
-    let categoryPayload = {
-      filters: {
-        ids: {
-          in: [categoryId],
-        },
-      },
-      pageSize: 18,
-      currentPage: this.currentPage,
-      search: "",
-      sort: {
-        price: "DESC",
-      },
-    };
-
-    // 🌶️
-    let r = await this.$store.dispatch("category/list", categoryPayload);
-    console.log("%c 拿到的产品和子分类", "color:green;font-weight:bold");
-    console.log(JSON.stringify(r));
-
-    this.categorys = r.categoryList[0]; // 这里是数组
-    let pageInfo = this.categorys.products.page_info;
-    this.pageInfo = pageInfo;
-    console.log("%c 当前页", "color:green;font-weight:bold");
-    console.log(JSON.stringify(pageInfo.current_page));
-    console.log("%c 一共多少页", "color:green;font-weight:bold");
-    console.log(JSON.stringify(pageInfo.total_pages));
-    console.log("%c 是否完成", "color:green;font-weight:bold");
-    console.log(JSON.stringify(this.finished));
-    if (pageInfo.current_page === pageInfo.total_pages) {
-      this.finished = true;
-      return;
-    }
-
-    this.list = this.list.concat(r.categoryList[0].products.items);
+    await this.loadingMoreItem();
   },
 
   beforeRouteLeave(to, from, next) {

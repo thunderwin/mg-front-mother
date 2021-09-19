@@ -1,14 +1,13 @@
 <template>
   <div>
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="black">
+    <van-swipe
+      class="my-swipe"
+      :loop="false"
+      indicator-color="black"
+      width="300"
+    >
       <van-swipe-item v-for="(slider, index) in imgs" :key="index">
-        <van-image
-          height="auto"
-          width="100%"
-          lazy-load
-          fit="contain"
-          :src="slider.url"
-        >
+        <van-image height="auto" lazy-load fit="contain" :src="slider.url">
           <template v-slot:loading>
             <van-loading type="spinner" size="20" />
           </template>

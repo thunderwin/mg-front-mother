@@ -2,43 +2,7 @@
   <div id="detailTop">
     <DetailSlider style="overflow: hidden" :x="x" />
 
-    <div
-      class="is-size-5 has-text-grey-dark"
-      style="padding: 0.5rem 1rem 0 1rem"
-    >
-      {{ x.name }}
-    </div>
-
-    <div class="review_summy" style="padding: 0 1rem">
-      <div
-        v-if="!!x.review_count"
-        class="item-ranking-review my-flex van-hairline--bottom"
-        style="justify-content: flex-start; padding: 10px 0"
-        @click="goReview"
-      >
-        <van-rate
-          color="#ffd21e"
-          v-model="x.rating_summary"
-          readonly
-          style="margin-right: 10px"
-        />
-        <a @click="scrollToId('#reviews')">{{ x.review_count }} ratings</a>
-      </div>
-
-      <a v-else href="#leave_review" class="" style="color: #7bcbc1">
-        Be the first to review this product
-      </a>
-    </div>
-
-    <BaseShowItemPrice v-if="x" :x="x" style="padding: 0 1rem" />
-
-    <!-- // 简单描述 -->
-    <div
-      v-if="x.short_description && x.short_description.html"
-      v-html="x.short_description.html"
-      class="desc van-hairline--bottom"
-      style="padding: 1rem"
-    ></div>
+    <DetailProductTitle :x="x" />
 
     <DetailCustomWrapper
       id="custom-option-wrapper"
@@ -48,38 +12,42 @@
       style="padding: 1rem"
     />
 
-    <div class="container detail_desc" style="padding: 1rem">
-      <div
-        style=""
-        id="review"
-        v-if="x.description"
-        class="desc"
-        v-html="x.description.html"
-      ></div>
-    </div>
+    <!-- <DetailDesc :x="x" /> -->
+
+    <van-cell-group style="margin: 1rem 0">
+      <van-cell
+        icon="diamond-o"
+        title="Return policy"
+        @click="showPopup"
+        is-link
+      />
+    </van-cell-group>
 
     <van-cell-group>
-      <van-cell
-        title="Shipping"
-        @click="descriptionClick"
-        is-link
-        value="内容"
-      />
+      <van-cell title="Size" @click="showDynamic('Size')" is-link />
+
       <van-cell-group>
-        <van-cell
-          title="Return policy"
-          @click="descriptionClick"
-          is-link
-          value="内容"
-        />
+        <van-cell title="Shipping" @click="showDynamic('Shipping')" is-link />
       </van-cell-group>
       <van-cell
         title="Description"
-        @click="descriptionClick"
+        @click="showDynamic('Desc')"
         is-link
-        value="内容"
+        value="Description"
       />
     </van-cell-group>
+
+    <van-popup
+      closeable
+      v-model="showPopup"
+      :lock-scroll="true"
+      :safe-area-inset-bottom="true"
+      get-container="body"
+      :duration="0.1"
+      :style="{ height: '80%', width: '100%' }"
+    >
+      <component :x="x" :is="'Detail' + curretPopupComponent" />
+    </van-popup>
 
     <DetailAttList
       class="van-hairline--bottom text-capitalize"
@@ -106,7 +74,7 @@
       />
     </van-goods-action> -->
 
-    <van-popup
+    <!-- <van-popup
       closeable
       v-model="showDesc"
       :lock-scroll="true"
@@ -125,7 +93,24 @@
           v-html="x.description.html"
         ></div>
       </div>
-    </van-popup>
+    </van-popup> -->
+
+    <LazyDetailRelatedProduct style="" :catgoryIds="x.categories" />
+
+    <LazyDetailReviewListReviewSpace :sku="x.sku" />
+
+    <section
+      class=""
+      id="leave_review"
+      style="margin-top: 30px; max-width: 600px; margin: 30px auto"
+    >
+      <div class="">
+        <div class="is-size-4 has-text-centered">Leave review</div>
+        <client-only>
+          <DetailReviewAddReviewSpace :sku="x.sku" />
+        </client-only>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -140,6 +125,9 @@ export default {
 
       addingCart: false,
       showDesc: false,
+      showPopup: false,
+
+      curretPopupComponent: "Desc", // 当前显示的弹出
     };
   },
   computed: {
@@ -168,6 +156,10 @@ export default {
   },
 
   methods: {
+    showDynamic(name) {
+      this.curretPopupComponent = name;
+      this.showPopup = true;
+    },
     descriptionClick() {
       this.showDesc = true;
     },
