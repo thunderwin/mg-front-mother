@@ -331,8 +331,16 @@ export default {
       return;
     },
 
-    scroll() {
-      this.$refs.scroll.scrollTop = 0;
+    scrollToId(item) {
+      console.log("%c ?", "color:green;font-weight:bold");
+      console.log(JSON.stringify());
+
+      // let idItem = document.getElementById(item);
+      let anchor = this.$el.querySelector(item); //计算传进来的id到顶部的距离
+      this.$nextTick(() => {
+        // console.log(anchor.offsetTop)
+        window.scrollTo(0, anchor.offsetTop); //滚动距离因为导航栏固定定位130px的高度
+      });
     },
   },
 };

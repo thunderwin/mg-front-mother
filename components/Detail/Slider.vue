@@ -4,7 +4,7 @@
       class="my-swipe"
       :loop="false"
       indicator-color="black"
-      width="300"
+      width="260"
     >
       <van-swipe-item v-for="(slider, index) in imgs" :key="index">
         <van-image height="auto" lazy-load fit="contain" :src="slider.url">

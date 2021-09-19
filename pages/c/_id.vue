@@ -171,21 +171,6 @@ export default {
   // },
 
   methods: {
-    scrollBackLastPostion() {
-      let scroll = this.$store.state.scroll;
-
-      console.log("%c mounted", "color:green;font-weight:bold");
-      console.log(JSON.stringify(scroll));
-
-      if (scroll > 0) {
-        console.log("%c 没执行？", "color:green;font-weight:bold");
-        console.log(JSON.stringify());
-
-        this.$nextTick(() => {
-          window.scrollTo(0, scroll);
-        });
-      }
-    },
     clickCart() {
       this.showDetail = false;
       this.$store.commit("setCartPopup", true);

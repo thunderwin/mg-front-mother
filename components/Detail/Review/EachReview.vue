@@ -36,9 +36,7 @@
           <div
             class="is-flex is-flex-direction-column is-align-content-space-between"
           >
-            <span class="font-semibold has-text-weight-bold">
-              {{ new Date(review.published_at).toLocaleString() }}
-            </span>
+            <span class="font-semibold has-text-weight-bold"> </span>
             <!-- <span class="is-size-7 is-flex is-align-items-center">
                   User of Bulma-css
                 </span> -->
@@ -46,7 +44,7 @@
         </div>
 
         <div class="review-date has-text-grey">
-          Reviewed on {{ review.published_at }}
+          Reviewed on {{ new Date(review.published_at).toLocaleString() }}
         </div>
 
         <div class="review-item-verifyed">
@@ -74,15 +72,19 @@
         <div
           v-if="review.remote_image_list && review.remote_image_list.length > 0"
           class="review-images my-flex"
-          style="justify-content: flex-start"
+          style="justify-content: flex-start; width: 100%"
         >
-          <div v-for="(img, findex) in review.remote_image_list" :key="findex">
+          <div
+            style="max-width: 100px; margin-right: 10px"
+            v-for="(img, findex) in review.remote_image_list"
+            :key="findex"
+          >
             <van-image
               height="auto"
-              width="100px"
-              style="margin-right: 1rem"
+              width="100%"
+              style="margin-right: 1rem; max-width: 100px"
               lazy-load
-              fit="contain"
+              fit="cover"
               :src="$store.state.strapi_url + img[0].formats.thumbnail.url"
             >
               <template v-slot:loading>
@@ -91,14 +93,15 @@
             </van-image>
           </div>
 
-          <!-- <van-grid :border="false" :column-num="3">
+          <!-- <van-grid :border="false" :gutter="10" :column-num="3">
             <van-grid-item
               v-for="(img, findex) in review.remote_image_list"
               :key="findex"
+              style="width: 100px"
             >
               <van-image
                 height="auto"
-                width="100px"
+                width="100%"
                 lazy-load
                 fit="contain"
                 :src="'http://localhost:1337' + img[0].formats.thumbnail.url"

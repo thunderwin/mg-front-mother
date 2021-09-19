@@ -1,67 +1,68 @@
 <template>
   <div style="font-size: 0.9rem">
-    <footer
-      v-if="$device.isDesktop"
-      class="footer van-hairline--top"
-      :style="{
-        padding: '1rem',
-        backgroundColor: $store.state.S.footerBackgroundColorMain,
-      }"
-    >
-      <section class="section left-menus" style="text-transform: capitalize">
-        <van-row gutter="30" class="container" style="">
-          <van-col span="12">
-            <van-row class="container" style="">
-              <van-col span="8">
-                <span class="navbar-item is-size-6">COMPANY INFO</span>
-                <div
-                  v-for="(y, yindex) in staticMenu"
-                  :key="(yindex + 4) * 1112"
-                >
-                  <CommonFooterEachLink :x="y" />
-                </div>
-              </van-col>
-
-              <van-col span="8">
-                <span class="is-size-6 navbar-item">HOT COLLECTIONS</span>
-
-                <div v-for="(y, yindex) in menu" :key="(yindex + 1) * 23">
-                  <!-- <CommonFooterEachLink :x="y" /> -->
-
-                  <nuxt-link
-                    :to="localePath('/list') + '?category_id=' + y.id"
-                    class="navbar-item has-text-dark"
-                    style="line-height: 2rem"
+    <client-only>
+      <footer
+        v-if="$device.isDesktop"
+        class="footer van-hairline--top"
+        :style="{
+          padding: '1rem',
+          backgroundColor: $store.state.S.footerBackgroundColorMain,
+        }"
+      >
+        <section class="section left-menus" style="text-transform: capitalize">
+          <van-row gutter="30" class="container" style="">
+            <van-col span="12">
+              <van-row class="container" style="">
+                <van-col span="8">
+                  <span class="navbar-item is-size-6">COMPANY INFO</span>
+                  <div
+                    v-for="(y, yindex) in staticMenu"
+                    :key="(yindex + 4) * 1112"
                   >
-                    <span>{{ y.label || y.name }}</span>
-                  </nuxt-link>
-                </div>
-              </van-col>
+                    <CommonFooterEachLink :x="y" />
+                  </div>
+                </van-col>
 
-              <van-col span="8">
-                <span class="navbar-item is-size-6">CUSTOMER CARE</span>
+                <van-col span="8">
+                  <span class="is-size-6 navbar-item">HOT COLLECTIONS</span>
 
-                <div
-                  v-for="(y, yindex) in staticMenu2"
-                  :key="(yindex + 1) * 23"
-                >
-                  <CommonFooterEachLink :x="y" />
-                </div>
-              </van-col>
-            </van-row>
-          </van-col>
+                  <div v-for="(y, yindex) in menu" :key="(yindex + 1) * 23">
+                    <!-- <CommonFooterEachLink :x="y" /> -->
 
-          <van-col span="12">
-            <div class="is-size-6">
-              SIGN UP FOR
-              <span class="is-uppercase">{{ $store.state.domain }}</span> STYLE
-              NEWS
-            </div>
-            <CommonFooterSubscribeBox />
-            <CommonFooterSocialIcons class="" style="margin-top: 2rem" />
-          </van-col>
+                    <nuxt-link
+                      :to="localePath('/list') + '?category_id=' + y.id"
+                      class="navbar-item has-text-dark"
+                      style="line-height: 2rem"
+                    >
+                      <span>{{ y.label || y.name }}</span>
+                    </nuxt-link>
+                  </div>
+                </van-col>
 
-          <!-- <van-col span="8">
+                <van-col span="8">
+                  <span class="navbar-item is-size-6">CUSTOMER CARE</span>
+
+                  <div
+                    v-for="(y, yindex) in staticMenu2"
+                    :key="(yindex + 1) * 23"
+                  >
+                    <CommonFooterEachLink :x="y" />
+                  </div>
+                </van-col>
+              </van-row>
+            </van-col>
+
+            <van-col span="12">
+              <div class="is-size-6">
+                SIGN UP FOR
+                <span class="is-uppercase">{{ $store.state.domain }}</span>
+                STYLE NEWS
+              </div>
+              <CommonFooterSubscribeBox />
+              <CommonFooterSocialIcons class="" style="margin-top: 2rem" />
+            </van-col>
+
+            <!-- <van-col span="8">
             <span class="navbar-item is-size-5">{{ $t("c.my_account") }}</span>
 
             <nuxt-link class="navbar-item" :to="localePath('/login')">
@@ -86,9 +87,10 @@
               <span>{{ $t("c.contact_us") }}</span>
             </a>
           </van-col> -->
-        </van-row>
-      </section>
-    </footer>
+          </van-row>
+        </section>
+      </footer>
+    </client-only>
 
     <footer
       v-if="$device.isMobileOrTablet"
