@@ -245,12 +245,14 @@ export default {
       return true;
     },
     openDetail(x) {
-      let crollHeight = document.documentElement.scrollTop;
+      // 🌶️ 使用keeplive 后，不需要在记录位置了
 
-      this.$store.commit("setScroll", crollHeight);
+      // let crollHeight = document.documentElement.scrollTop;
 
-      console.log("%c 离开之前的位置", "color:green;font-weight:bold");
-      console.log(JSON.stringify(crollHeight));
+      // this.$store.commit("setScroll", crollHeight);
+
+      // console.log("%c 离开之前的位置", "color:green;font-weight:bold");
+      // console.log(JSON.stringify(crollHeight));
 
       this.$router.push("/p" + "/" + x.sku);
 

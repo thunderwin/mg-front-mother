@@ -3,50 +3,7 @@
     <div v-if="$device.isMobileOrTablet" class="container" gutter="30">
       <DetailSlider style="overflow: hidden" :x="x" />
 
-      <div
-        class="is-size-5 has-text-grey-dark"
-        style="padding: 0.5rem 1rem 0 1rem"
-      >
-        {{ x.name }}
-      </div>
-
-      <div class="yotpo bottomLine" data-yotpo-product-id="10"></div>
-
-      <div class="review_summy" style="padding: 0 1rem">
-        <div
-          v-if="!!x.review_count"
-          class="item-ranking-review my-flex van-hairline--bottom"
-          style="justify-content: flex-start; padding: 10px 0"
-          @click="goReview"
-        >
-          <van-rate
-            color="#ffd21e"
-            v-model="x.rating_summary"
-            readonly
-            style="margin-right: 10px"
-          />
-          <a @click="scrollToId('#reviews')">{{ x.review_count }} ratings</a>
-        </div>
-
-        <a v-else href="#leave_review" class="" style="color: #7bcbc1">
-          Be the first to review this product
-        </a>
-      </div>
-
-      <BaseShowItemPrice
-        v-if="x"
-        :x="x"
-        :fontSize="4"
-        style="padding: 0 1rem"
-      />
-
-      <!-- // 简单描述 -->
-      <div
-        v-if="x.short_description && x.short_description.html"
-        v-html="x.short_description.html"
-        class="desc van-hairline--bottom"
-        style="padding: 1rem"
-      ></div>
+      <DetailProductTitle :x="x" />
 
       <DetailCustomWrapper
         id="custom-option-wrapper"
@@ -56,22 +13,14 @@
         style="padding: 1rem"
       />
 
-      <DetailAttList
+      <!-- <DetailAttList
         class="van-hairline--bottom text-capitalize"
         style="padding: 1rem"
         v-if="x.atts && x.atts.length > 0"
         :atts="x.atts"
-      />
+      /> -->
 
-      <div class="container detail_desc" style="padding: 1rem">
-        <div
-          style=""
-          id="review"
-          v-if="x.description"
-          class="desc"
-          v-html="x.description.html"
-        ></div>
-      </div>
+      <DetailPopGroup :x="x" />
     </div>
 
     <van-row

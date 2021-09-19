@@ -18,6 +18,8 @@
 export default {
   scrollToTop: true,
 
+  layout: "empty",
+
   data() {
     return {
       cart: {},

@@ -14,40 +14,7 @@
 
     <!-- <DetailDesc :x="x" /> -->
 
-    <van-cell-group style="margin: 1rem 0">
-      <van-cell
-        icon="diamond-o"
-        title="Return policy"
-        @click="showPopup"
-        is-link
-      />
-    </van-cell-group>
-
-    <van-cell-group>
-      <van-cell title="Size" @click="showDynamic('Size')" is-link />
-
-      <van-cell-group>
-        <van-cell title="Shipping" @click="showDynamic('Shipping')" is-link />
-      </van-cell-group>
-      <van-cell
-        title="Description"
-        @click="showDynamic('Desc')"
-        is-link
-        value="Description"
-      />
-    </van-cell-group>
-
-    <van-popup
-      closeable
-      v-model="showPopup"
-      :lock-scroll="true"
-      :safe-area-inset-bottom="true"
-      get-container="body"
-      :duration="0.1"
-      :style="{ height: '80%', width: '100%' }"
-    >
-      <component :x="x" :is="'Detail' + curretPopupComponent" />
-    </van-popup>
+    <DetailPopGroup :x="x" />
 
     <DetailAttList
       class="van-hairline--bottom text-capitalize"
@@ -125,9 +92,6 @@ export default {
 
       addingCart: false,
       showDesc: false,
-      showPopup: false,
-
-      curretPopupComponent: "Desc", // 当前显示的弹出
     };
   },
   computed: {
