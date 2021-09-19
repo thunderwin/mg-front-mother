@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #fafafa">
     <div v-if="$device.isMobileOrTablet" class="container" gutter="30">
       <DetailSlider style="overflow: hidden" :x="x" />
 
@@ -7,10 +7,10 @@
 
       <DetailCustomWrapper
         id="custom-option-wrapper"
-        v-if="x.options && x.options.length > 0 && isSpecialItem === 'nomal'"
+        v-if="x.options && x.options.length > 0"
         :option="x.options"
         ref="customOption"
-        style="padding: 1rem"
+        style="padding: 1rem; background-color: #fff"
       />
 
       <!-- <DetailAttList
@@ -259,25 +259,6 @@ export default {
   },
 
   methods: {
-    goReview() {
-      console.log("%c ????", "color:green;font-weight:bold");
-      console.log(JSON.stringify());
-
-      this.scrollToId("#reviews");
-    },
-
-    scrollToId(item) {
-      console.log("%c ?", "color:green;font-weight:bold");
-      console.log(JSON.stringify());
-
-      // let idItem = document.getElementById(item);
-      let anchor = this.$el.querySelector(item); //计算传进来的id到顶部的距离
-      this.$nextTick(() => {
-        // console.log(anchor.offsetTop)
-        window.scrollTo(0, anchor.offsetTop); //滚动距离因为导航栏固定定位130px的高度
-      });
-    },
-
     async addToCart() {
       let chosenOption; // 自定义属性
 

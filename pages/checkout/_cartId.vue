@@ -165,7 +165,7 @@ export default {
       this.cart = cart;
 
       // region 要特殊处理下
-      if (oldAddress.region) {
+      if (!!oldAddress.region) {
         oldAddress.province = oldAddress.region.label;
       }
       this.$refs.editAddress.oldAddress = oldAddress;

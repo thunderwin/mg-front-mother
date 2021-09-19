@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #fff">
     <div
       class="is-size-5 has-text-grey-dark"
       style="padding: 0.5rem 1rem 0 1rem"
@@ -42,6 +42,25 @@
 <script>
 export default {
   props: ["x"],
+  methods: {
+    goReview() {
+      console.log("%c ????", "color:green;font-weight:bold");
+      console.log(JSON.stringify());
+
+      this.scrollToId("#reviews");
+    },
+    scrollToId(item) {
+      console.log("%c ?", "color:green;font-weight:bold");
+      console.log(JSON.stringify());
+
+      // let idItem = document.getElementById(item);
+      let anchor = this.$el.querySelector(item); //计算传进来的id到顶部的距离
+      this.$nextTick(() => {
+        // console.log(anchor.offsetTop)
+        window.scrollTo(0, anchor.offsetTop); //滚动距离因为导航栏固定定位130px的高度
+      });
+    },
+  },
 };
 </script>
 
