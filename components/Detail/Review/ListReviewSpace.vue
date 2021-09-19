@@ -149,8 +149,18 @@ export default {
       let count = await this.$axios.get("/space/reviews/count", {
         params: countQuery,
       });
-      console.log("%c count", "color:green;font-weight:bold");
-      console.log(JSON.stringify(count));
+
+      if (count.data || count.data == 0) {
+        count = 0;
+        this.total = {
+          count: 0,
+          summy: 0,
+          rank: 0,
+        };
+        return;
+      }
+      console.log("%c 评论数量 count", "color:green;font-weight:bold");
+      console.log(JSON.stringify(count.data));
 
       let summy = await this.$axios.get(`/space/reviews/summy/${this.sku}`, {});
       summy = summy["sum(`score`)"];
