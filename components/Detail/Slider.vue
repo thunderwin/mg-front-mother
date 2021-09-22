@@ -1,6 +1,7 @@
 <template>
   <div>
     <van-swipe
+      v-if="$device.isMobileOrTablet"
       class="my-swipe"
       :loop="false"
       indicator-color="black"
@@ -17,6 +18,29 @@
         <div class="custom-indicator">{{ current + 1 }}/4</div>
       </template> -->
     </van-swipe>
+
+    <div v-if="$device.isDesktop" class="desktop-alumn">
+      <van-grid
+        :border="false"
+        :center="false"
+        :column-num="2"
+        gutter="0"
+        :clickable="true"
+      >
+        <van-grid-item v-for="(z, index) in imgs" :key="index">
+          <div
+            :style="{
+              textAlign: 'center',
+            }"
+            class=""
+          >
+            <div class="subcate" style="">
+              <van-image width="100%" :src="z.url" />
+            </div>
+          </div>
+        </van-grid-item>
+      </van-grid>
+    </div>
   </div>
 </template>
 
@@ -32,6 +56,8 @@ export default {
 
       return this.x.media_gallery;
     },
+
+    pcImgs() {},
   },
 };
 </script>
