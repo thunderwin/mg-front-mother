@@ -1,15 +1,17 @@
 <template>
-  <div style="padding: 0.5rem 0">
+  <div style="padding: 1rem 0">
     <!-- {{ x }} -->
-    <div :class="x.fullScreen ? '' : 'container'">
+    <div
+      v-if="$device.isMobileOrTablet"
+      :class="x.fullScreen ? '' : 'container'"
+    >
       <div
         class="is-size-6 is-capitalized"
-        style="padding: 0 1rem 1rem 1rem; text-align: center; font-weight: bold"
+        style="padding: 0 1rem 1rem 1rem; text-align: center"
       >
         Shop by category
       </div>
       <van-grid
-        v-if="$device.isMobileOrTablet"
         :border="false"
         :center="false"
         :column-num="2"
@@ -45,9 +47,17 @@
           </nuxt-link>
         </van-grid-item>
       </van-grid>
-      <!-- {{ categoryList }} -->
+    </div>
+    <!-- {{ categoryList }} -->
+
+    <div v-if="$device.isDesktop">
+      <div
+        class="is-size-5 is-capitalized"
+        style="padding: 0 1rem 1rem 1rem; text-align: center"
+      >
+        Shop by category
+      </div>
       <van-grid
-        v-if="$device.isDesktop"
         :border="false"
         :center="false"
         :column-num="x.rowNum"

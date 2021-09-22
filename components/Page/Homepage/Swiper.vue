@@ -1,5 +1,5 @@
 <template>
-  <div class="" style="padding: 1rem 0">
+  <div class="" style="">
     <div v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
         <div
