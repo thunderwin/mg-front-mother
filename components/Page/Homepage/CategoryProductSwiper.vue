@@ -2,13 +2,13 @@
   <div class="">
     <div v-if="$device.isDesktop" class="section">
       <div :class="!!x.fullScreen ? '' : 'container'">
-        <div
+        <!-- <div
           v-if="x.title"
-          class="is-size-5 is-capitalized"
-          style="padding: 1rem"
+          class="is-size-4 is-capitalized"
+          style="padding: 1rem; text-align: center; font-weight: bold"
         >
           {{ x.title }}
-        </div>
+        </div> -->
         <div v-swiper:mySwiper="swiperOption">
           <div class="swiper-wrapper" style="padding: 1rem 0">
             <div
@@ -108,9 +108,9 @@ export default {
     },
     swiperOption() {
       return {
-        slidesPerView: this.$device.isDesktop ? 6 : 2,
+        slidesPerView: this.$device.isDesktop ? 6 : 3,
         grabCursor: true,
-        spaceBetween: 20,
+        spaceBetween: 10,
 
         //显示分页
         navigation: {

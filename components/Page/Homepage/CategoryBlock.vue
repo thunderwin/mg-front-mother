@@ -1,11 +1,12 @@
 <template>
-  <div style="padding: 0.5rem 0">
+  <div style="padding: 1rem 0">
     <div :class="x.fullScreen ? '' : 'container'">
       <van-grid
         v-if="$device.isMobileOrTablet"
         :border="false"
         :center="false"
-        :column-num="x.rowNumM"
+        :column-num="2"
+        gutter="10"
         :clickable="true"
       >
         <van-grid-item v-for="(z, index) in categoryList" :key="index">
@@ -17,15 +18,15 @@
             class=""
             :to="localePath('/c') + '/' + z.id"
           >
-            <div class="subcate" style="padding: 1rem">
+            <div class="subcate" style="">
               <van-image width="100%" :src="z.image" />
 
-              <div
-                class="is-centered is-capitalized is-size-6"
+              <!-- <div
+                class="is-centered is-capitalized is-size-5"
                 style="text-align: center"
               >
                 {{ z.name }}
-              </div>
+              </div> -->
             </div>
           </nuxt-link>
         </van-grid-item>
@@ -43,7 +44,6 @@
           <nuxt-link
             :style="{
               backgroundColor: $store.state.S.mainBgColor,
-              padding: '1rem',
             }"
             class="shadow"
             :to="localePath('/c') + '/' + z.id"
@@ -51,14 +51,14 @@
             <!-- {{ z }} -->
             <van-image width="100%" :src="z.image" />
 
-            <div class="subcate">
+            <!-- <div class="subcate">
               <div
                 class="is-centered is-capitalized is-size-5"
                 style="text-align: center; margin-top: 1rem"
               >
                 {{ z.name }}
               </div>
-            </div>
+            </div> -->
           </nuxt-link>
         </van-grid-item>
       </van-grid>

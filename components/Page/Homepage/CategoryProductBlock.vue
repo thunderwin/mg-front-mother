@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 0.5rem 0">
+  <div style="padding: 1rem 0">
     <div :class="x.fullScreen ? '' : 'container'">
       <van-grid
         v-if="$device.isMobileOrTablet"

@@ -2,11 +2,18 @@
   <div style="padding: 0.5rem 0">
     <!-- {{ x }} -->
     <div :class="x.fullScreen ? '' : 'container'">
+      <div
+        class="is-size-6 is-capitalized"
+        style="padding: 0 1rem 1rem 1rem; text-align: center; font-weight: bold"
+      >
+        Shop by category
+      </div>
       <van-grid
         v-if="$device.isMobileOrTablet"
         :border="false"
         :center="false"
-        :column-num="3"
+        :column-num="2"
+        gutter="10"
         :clickable="true"
       >
         <van-grid-item v-for="(z, index) in categoryList" :key="index">
@@ -18,7 +25,7 @@
             class=""
             :to="localePath('/c') + '/' + z.id"
           >
-            <div class="subcate" style="padding: 1rem">
+            <div class="subcate my-flex" style="padding: 1rem">
               <van-image width="3rem" :src="'/clothing/' + z.icon + '.svg'" />
 
               <div

@@ -105,7 +105,7 @@ export default {
   computed: {
     swiperOption() {
       return {
-        slidesPerView: this.$device.isDesktop ? 6 : 2,
+        slidesPerView: this.$device.isDesktop ? 6 : 3,
         grabCursor: true,
         spaceBetween: 20,
 
