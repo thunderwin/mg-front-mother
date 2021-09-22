@@ -63,9 +63,11 @@
             style="margin-right: 10px"
           />
 
-          <span class="has-text-weight-bold">{{ review.review_title }}</span>
+          <span class="has-text-weight-bold van-ellipsis">{{
+            review.review_title
+          }}</span>
         </div>
-        <div>
+        <div style="padding: 0.5rem 0">
           <span>{{ review.review_content }}</span>
         </div>
 
@@ -75,7 +77,7 @@
           style="justify-content: flex-start; width: 100%"
         >
           <div
-            style="max-width: 100px; margin-right: 10px"
+            style="max-width: 100px; margin-right: 10px; align-items: initial"
             v-for="(img, findex) in review.remote_image_list"
             :key="findex"
           >
@@ -120,7 +122,7 @@
             helpful
           </div>
 
-          <div class="actionsss">
+          <div class="actionsss" style="margin-top: 0.5rem">
             <van-button
               icon="arrow-up"
               size="mini"

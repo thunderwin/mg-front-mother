@@ -3,9 +3,9 @@
     <section
       class=""
       id="reviews"
-      style="margin-top: 30px; max-width: 600px; margin: 30px auto"
+      style="margin-top: 2rem; max-width: 600px; margin: 2rem auto"
     >
-      <div class="review_section_titile">
+      <div class="review_section_titile" style="text-align: center">
         {{ total.rank }}
         <span>
           <van-rate
@@ -13,13 +13,13 @@
             allow-half
             v-model="total.rank"
             readonly
-            style="margin-right: 10px"
+            style="margin-right: 0.5rem"
         /></span>
 
         <span> {{ total.count }} Reviews</span>
       </div>
 
-      <div class="review_tab">
+      <div class="review_tab" style="margin: 1rem 0">
         <div class="tabs is-boxed">
           <ul>
             <li class="is-active">

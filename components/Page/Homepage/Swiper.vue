@@ -1,5 +1,5 @@
 <template>
-  <div class="" style="padding: 0 0 2rem 0">
+  <div class="" style="padding: 0.5rem 0">
     <div v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
         <div
@@ -12,7 +12,7 @@
           v-for="(img, index) in x.fileList"
           :key="index"
         >
-          <div class="item-images" v-if="img">
+          <div class="item-images" v-if="img" style="text-align: center">
             <van-image width="" height="" fit="cover" :src="img">
               <template v-slot:loading>
                 <van-loading type="spinner" size="20" />
@@ -23,6 +23,7 @@
       </div>
       <div v-if="x.fileList.length > 1" class="swiper-pagination"></div>
       <div
+        v-if="x.fileList.length > 1"
         class="swiper-button-prev"
         :style="{
           color: $store.state.S.mainColor,
@@ -30,6 +31,7 @@
         slot="button-prev"
       ></div>
       <div
+        v-if="x.fileList.length > 1"
         :style="{
           color: $store.state.S.mainColor,
         }"

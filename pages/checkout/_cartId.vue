@@ -111,7 +111,7 @@ export default {
 
   components: {},
 
-  beforeMount() {
+  mounted() {
     this.initCheckout();
   },
 

@@ -89,7 +89,7 @@ export default {
   methods: {
     jump() {
       if (this.isClickable) {
-        this.$router.push(this.localePath("/p") + "/" + this.x.sku);
+        this.$router.push("/p" + "/" + this.x.sku);
       }
     },
   },

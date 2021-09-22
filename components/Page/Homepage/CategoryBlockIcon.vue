@@ -1,11 +1,12 @@
 <template>
   <div style="padding: 0.5rem 0">
+    <!-- {{ x }} -->
     <div :class="x.fullScreen ? '' : 'container'">
       <van-grid
         v-if="$device.isMobileOrTablet"
         :border="false"
         :center="false"
-        :column-num="x.rowNumM"
+        :column-num="3"
         :clickable="true"
       >
         <van-grid-item v-for="(z, index) in categoryList" :key="index">
@@ -18,7 +19,7 @@
             :to="localePath('/c') + '/' + z.id"
           >
             <div class="subcate" style="padding: 1rem">
-              <van-image width="100%" :src="z.image" />
+              <van-image width="3rem" :src="'/clothing/' + z.icon + '.svg'" />
 
               <div
                 class="is-centered is-capitalized is-size-6"
@@ -26,6 +27,13 @@
               >
                 {{ z.name }}
               </div>
+
+              <!-- <div
+
+                class="is-centered is-capitalized"
+                style="text-align: center; margin-top: 1rem"
+                v-html="z.description"
+              ></div> -->
             </div>
           </nuxt-link>
         </van-grid-item>
@@ -45,19 +53,24 @@
               backgroundColor: $store.state.S.mainBgColor,
               padding: '1rem',
             }"
-            class="shadow"
+            class="shadow my-flex"
             :to="localePath('/c') + '/' + z.id"
           >
-            <!-- {{ z }} -->
-            <van-image width="100%" :src="z.image" />
+            <van-image width="4rem" :src="'/clothing/' + z.icon + '.svg'" />
 
             <div class="subcate">
               <div
-                class="is-centered is-capitalized is-size-5"
+                class="is-centered is-capitalized is-size-6"
                 style="text-align: center; margin-top: 1rem"
               >
                 {{ z.name }}
               </div>
+
+              <div
+                class="is-centered is-capitalized"
+                style="text-align: center; margin-top: 1rem"
+                v-html="z.description"
+              ></div>
             </div>
           </nuxt-link>
         </van-grid-item>
@@ -75,8 +88,41 @@ export default {
 
   computed: {
     categoryList() {
-      let menu = this.$store.state.menu;
-      let cate = menu.filter((z) => this.x.ids.includes(JSON.stringify(z.id)));
+      let menu = this.$store.state.flatMenu;
+      // let cate = menu.filter((z) => this.x.ids.includes(JSON.stringify(z.id)));
+
+      let cate = this.x.ids.map((id) => menu.find((z) => z.id == id));
+
+      console.log("%c cate11", "color:green;font-weight:bold");
+      console.log(JSON.stringify(cate));
+
+      const avaliableIcons = [
+        "bottoms",
+        "blousesshirts",
+        "coats",
+        "dresses",
+        "jumpsuits",
+        "sets",
+        "twopieceset",
+        "shorts",
+        "skirts",
+        "sweaters",
+        "sweaterscardigans",
+        "danim",
+        "t-shirts",
+        "coatsjackets",
+      ];
+
+      cate = cate.map((x) => {
+        let iconIndex = avaliableIcons.indexOf(
+          x.name.toLowerCase().replace(/\s/g, "").replace("&", "")
+        );
+        if (iconIndex > -1) {
+          x.icon = avaliableIcons[iconIndex];
+        }
+
+        return x;
+      });
 
       return cate;
     },

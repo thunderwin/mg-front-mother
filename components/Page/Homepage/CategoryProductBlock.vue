@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding: 0.5rem 0">
     <div :class="x.fullScreen ? '' : 'container'">
       <van-grid
         v-if="$device.isMobileOrTablet"
@@ -34,16 +34,16 @@
       </van-grid>
 
       <div class="pc-in" v-if="$device.isDesktop">
-        <!-- {{ category }} -->
-        <van-image width="100%" fit="cover" :src="category.image">
+        {{ category }}
+        <!-- <van-image width="100%" fit="cover" :src="category.image">
           <template v-slot:loading>
             <van-loading type="spinner" size="20" />
           </template>
-        </van-image>
+        </van-image> -->
 
         <!-- {{ category }} -->
 
-        <div class="container">
+        <!-- <div class="container">
           <van-grid
             v-if="category.products"
             :border="false"
@@ -59,7 +59,7 @@
               <BaseProduct class="shadow" :x="z" />
             </van-grid-item>
           </van-grid>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
