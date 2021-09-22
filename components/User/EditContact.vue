@@ -196,8 +196,8 @@ export default {
     async getCountries() {
       let r = await this.$axios.post("/api/store/countries");
 
-      // console.log("%c 全部的国家", "color:green;font-weight:bold");
-      // console.log(JSON.stringify(r));
+      console.log("%c 全部的国家", "color:green;font-weight:bold");
+      console.log(JSON.stringify(r));
 
       this.countriesOrgianl = r.countries;
 

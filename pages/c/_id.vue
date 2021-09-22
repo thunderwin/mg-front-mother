@@ -131,6 +131,22 @@
 </template>
 
 <script>
+function convertQueryToGQLSort(query) {
+  let sort = {
+    position: "DESC",
+  };
+
+  for (let x in query) {
+    if (x.indexOf("sortby") > -1) {
+      let key = x.split("_")[1];
+      let value = query[x];
+      sort[key] = value;
+    }
+  }
+
+  return sort;
+}
+
 export default {
   scrollToTop: true,
   watchQuery: true,
@@ -154,6 +170,7 @@ export default {
       currentPage: 1,
     };
   },
+
   mounted() {
     // this.scrollBackLastPostion();
   },
@@ -274,6 +291,11 @@ export default {
     async loadingMoreItem() {
       let categoryId = this.$route.params.id;
 
+      let sort = convertQueryToGQLSort(this.$route.query);
+
+      console.log("%c sort", "color:green;font-weight:bold");
+      console.log(JSON.stringify(sort));
+
       let categoryPayload = {
         filters: {
           ids: {
@@ -283,9 +305,7 @@ export default {
         pageSize: 18,
         currentPage: this.currentPage,
         search: "",
-        sort: {
-          price: "DESC",
-        },
+        sort: sort,
       };
 
       // 🌶️
@@ -309,6 +329,7 @@ export default {
 
       this.list = this.list.concat(r.categoryList[0].products.items);
     },
+
     async loadMore(e) {
       this.loading = true;
       this.currentPage += 1;

@@ -24,6 +24,7 @@ export default {
   mounted() {
     (function e() {
       var e = document.createElement("script");
+
       (e.type = "text/javascript"),
         (e.async = true),
         (e.src =
