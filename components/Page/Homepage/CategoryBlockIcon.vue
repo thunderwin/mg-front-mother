@@ -100,9 +100,6 @@ export default {
 
       let cate = this.x.ids.map((id) => menu.find((z) => z.id == id));
 
-      console.log("%c cate11", "color:green;font-weight:bold");
-      console.log(JSON.stringify(cate));
-
       const avaliableIcons = [
         "bottoms",
         "blousesshirts",
@@ -120,16 +117,18 @@ export default {
         "coatsjackets",
       ];
 
-      cate = cate.map((x) => {
-        let iconIndex = avaliableIcons.indexOf(
-          x.name.toLowerCase().replace(/\s/g, "").replace("&", "")
-        );
-        if (iconIndex > -1) {
-          x.icon = avaliableIcons[iconIndex];
-        }
+      cate = cate
+        .filter((x) => !!x)
+        .map((x) => {
+          let iconIndex = avaliableIcons.indexOf(
+            x.name.toLowerCase().replace(/\s/g, "").replace("&", "")
+          );
+          if (iconIndex > -1) {
+            x.icon = avaliableIcons[iconIndex];
+          }
 
-        return x;
-      });
+          return x;
+        });
 
       return cate;
     },
