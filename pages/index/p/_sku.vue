@@ -289,7 +289,6 @@ export default {
         item: this.x,
       });
 
-      this.$formulate.reset("customOption");
       this.addingCart = false;
 
       return true;

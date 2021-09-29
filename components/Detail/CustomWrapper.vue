@@ -74,6 +74,7 @@ export default {
         return;
       }
       this.$emit("doAddCart", e);
+      this.formErrors = [];
     },
     chosenOption(option_id, option_type_id) {
       this.showErrorOptionId = "";
