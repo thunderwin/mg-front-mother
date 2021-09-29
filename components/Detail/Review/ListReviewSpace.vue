@@ -1,49 +1,46 @@
 <template>
   <div>
-    <section
-      class=""
-      id="reviews"
-      style="margin-top: 2rem; max-width: 600px; margin: 2rem auto"
-    >
-      <div class="review_section_titile" style="text-align: center">
-        {{ total.rank }}
-        <span>
-          <van-rate
-            color="#ffd21e"
-            allow-half
-            v-model="total.rank"
-            readonly
-            style="margin-right: 0.5rem"
-        /></span>
+    <section class="" id="reviews" style="margin: 2rem 1rem">
+      <div class="container" style="max-width: 800px">
+        <div class="review_section_titile" style="text-align: center">
+          {{ total.rank }}
+          <span>
+            <van-rate
+              color="#ffd21e"
+              allow-half
+              v-model="total.rank"
+              readonly
+              style="margin-right: 0.5rem"
+          /></span>
 
-        <span> {{ total.count }} Reviews</span>
-      </div>
+          <span> {{ total.count }} Reviews</span>
+        </div>
 
-      <div class="review_tab" style="margin: 1rem 0">
-        <div class="tabs is-boxed">
-          <ul>
-            <li class="is-active">
-              <a>
-                <span>Reviews</span>
-              </a>
-            </li>
-            <!-- <li>
+        <div class="review_tab" style="margin: 1rem 0">
+          <div class="tabs is-boxed">
+            <ul>
+              <li class="is-active">
+                <a>
+                  <span>Reviews</span>
+                </a>
+              </li>
+              <!-- <li>
               <a>
                 <span>Questions</span>
               </a>
             </li> -->
-          </ul>
+            </ul>
 
-          <div class="buttons">
-            <van-button
-              :color="$store.state.S.mainColor"
-              class="button"
-              icon="comment-o"
-              type="default"
-            >
-              Write a review
-            </van-button>
-            <!-- <van-button
+            <div class="buttons">
+              <van-button
+                :color="$store.state.S.mainColor"
+                class="button"
+                icon="comment-o"
+                type="default"
+              >
+                Write a review
+              </van-button>
+              <!-- <van-button
               :color="$store.state.S.mainColor"
               class="button"
               icon="service-o"
@@ -51,25 +48,26 @@
             >
               Ask a question
             </van-button> -->
+            </div>
           </div>
         </div>
+
+        <DetailReviewEachReview
+          v-for="(review, index) in list"
+          :key="index"
+          :review="review"
+          style="margin-bottom: 1rem"
+        />
+
+        <nav
+          class="pagination is-small"
+          role="navigation"
+          aria-label="pagination"
+        >
+          <a class="pagination-previous" @click="lastPage">Previous</a>
+          <a class="pagination-next" @click="nextPage">Next page</a>
+        </nav>
       </div>
-
-      <DetailReviewEachReview
-        v-for="(review, index) in list"
-        :key="index"
-        :review="review"
-        style="margin-bottom: 1rem"
-      />
-
-      <nav
-        class="pagination is-small"
-        role="navigation"
-        aria-label="pagination"
-      >
-        <a class="pagination-previous" @click="lastPage">Previous</a>
-        <a class="pagination-next" @click="nextPage">Next page</a>
-      </nav>
     </section>
   </div>
 </template>

@@ -2,25 +2,34 @@
   <div>
     <section v-if="$device.isDesktop" class="section">
       <div class="container">
-        <div class="is-size-4 has-text-centered m-4">Related products</div>
-      </div>
+        <div class="">
+          <div class="is-size-4 has-text-centered m-4">Related products</div>
+        </div>
 
-      <van-tabs scrollspy :color="$store.state.S.mainColor">
-        <van-tab v-for="(x, index) in categories" :title="x.name" :key="index">
-          <van-grid
-            style="padding: 1rem 0 1rem 1rem"
-            :border="false"
-            :center="false"
-            :gutter="'20px'"
-            :clickable="true"
-            :column-num="6"
+        <van-tabs scrollspy :color="$store.state.S.mainColor">
+          <van-tab
+            v-for="(x, index) in categories"
+            :title="x.name"
+            :key="index"
           >
-            <van-grid-item v-for="(y, index) in x.products.items" :key="index">
-              <BaseProduct class="shadow" :x="y" />
-            </van-grid-item>
-          </van-grid>
-        </van-tab>
-      </van-tabs>
+            <van-grid
+              style="padding: 1rem 0 1rem 1rem"
+              :border="false"
+              :center="false"
+              :gutter="'20px'"
+              :clickable="true"
+              :column-num="6"
+            >
+              <van-grid-item
+                v-for="(y, index) in x.products.items"
+                :key="index"
+              >
+                <BaseProduct class="shadow" :x="y" />
+              </van-grid-item>
+            </van-grid>
+          </van-tab>
+        </van-tabs>
+      </div>
     </section>
 
     <div v-if="$device.isMobileOrTablet" class="shadow">
