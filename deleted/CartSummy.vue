@@ -89,7 +89,7 @@
         >
           {{ $t("c.checkout") }}
         </button>
-        <LazyCheckoutPaypalPayment />
+        <!-- <LazyCheckoutPaypalPayment /> -->
       </div>
     </client-only>
   </div>

@@ -87,7 +87,7 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: "@/plugins/paypal.js", ssr: false },
+    // { src: "@/plugins/paypal.js", ssr: false },
     // { src: "@/plugins/youtube", ssr: false },
     "~/plugins/client-only.client.js",
     { src: "@/plugins/axios-extensions.js" },

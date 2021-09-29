@@ -1,29 +1,35 @@
 <template>
-  <div class="" style="justify-content: flex-start; flex-wrap: wrap">
-    <!-- {{ chosen }} -->
-    <div class="each-option" v-for="(o, oindex) in option" :key="oindex">
-      <div
-        class="option-label is-capitalized is-size-5"
-        style="margin-top: 1rem"
+  <div
+    class="choose-option"
+    style="justify-content: flex-start; flex-wrap: wrap"
+  >
+    <!-- {{ formValues }}
+    {{ option }} -->
+    <client-only>
+      <FormulateForm
+        :form-errors="formErrors"
+        v-model="formValues"
+        name="customOption"
+        @submit="submit"
       >
-        {{ o.title }}
-      </div>
-      <div class="option-options">
-        <DetailCustomOption
-          :options="o.value"
-          :option_id="o.option_id"
-          @chosenOption="chosenOption"
+        <FormulateInput
+          v-for="(o, oindex) in option"
+          :key="oindex + 3"
+          :name="JSON.stringify(o.option_id)"
+          :validation-name="o.title"
+          :label="o.title"
+          type="radio"
+          :options="
+            o.value.map((x) => ({
+              label: x.title,
+              value: x.option_type_id,
+            }))
+          "
+          validation="required"
+          class="is-medium"
         />
-      </div>
-
-      <div
-        v-if="o.option_id == showErrorOptionId"
-        style="color: #960505; margin-top: 0.5rem"
-        class="err-msg is-warning"
-      >
-        {{ o.title }} is required
-      </div>
-    </div>
+      </FormulateForm>
+    </client-only>
   </div>
 </template>
 
@@ -32,6 +38,8 @@ export default {
   props: ["option"],
   data() {
     return {
+      formValues: {},
+      formErrors: [],
       chosen: {},
       showErrorOptionId: "", // 显示错误的Id
     };
@@ -45,6 +53,11 @@ export default {
     console.log(JSON.stringify(this.chosen));
   },
   methods: {
+    submit(e) {
+      console.log("%c e", "color:green;font-weight:bold");
+      console.log(JSON.stringify(e));
+      this.$emit("doAddCart", e);
+    },
     chosenOption(option_id, option_type_id) {
       this.showErrorOptionId = "";
       // console.log("%c ", "color:green;font-weight:bold");
@@ -68,4 +81,40 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.choose-option {
+  .formulate-input-label {
+    text-transform: capitalize;
+  }
+  .formulate-input-group-item[data-has-value="true"] {
+    border: 1px solid #000;
+  }
+  .formulate-input-element--group {
+    display: flex !important;
+    flex-flow: wrap;
+  }
+  .formulate-input-group-item:hover {
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+  }
+  .formulate-input-group-item {
+    background-color: #eee;
+    margin-right: 1rem;
+    border: 1px solid #eee;
+    border-radius: 4px;
+
+    .formulate-input-element--radio {
+      display: none;
+    }
+    .formulate-input-wrapper {
+    }
+    .formulate-input-label--after {
+      text-align: center;
+      width: 70px;
+      height: 35px;
+      line-height: 35px;
+      margin-left: 0;
+      cursor: pointer;
+    }
+  }
+}
+</style>

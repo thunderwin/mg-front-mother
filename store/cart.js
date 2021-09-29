@@ -90,9 +90,12 @@ export const actions = {
         payload.chosenOption
       ).map((x) => ({
         id: Number(x),
-        value_string: JSON.stringify(payload.chosenOption[x]),
+        value_string: payload.chosenOption[x],
       }));
     }
+
+    console.log("%c addCartPayload", "color:green;font-weight:bold");
+    console.log(JSON.stringify(addCartPayload));
 
     switch (item.__typename) {
       case "SimpleProduct":

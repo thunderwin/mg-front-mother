@@ -45,7 +45,6 @@
     "vue-awesome-swiper": "^4.1.1",
     "vue-content-placeholders": "^0.2.1",
     "vue-i18n": "^8.22.4",
-    "vue-paypal-checkout": "^3.2.0",
     "vue-social-sharing": "^2.4.7",
     "vue-youtube-embed": "^2.2.2",
     "vuex-persistedstate": "^3.1.0"

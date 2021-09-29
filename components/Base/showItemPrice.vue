@@ -2,7 +2,6 @@
   <div
     :style="{
       color: $store.state.S.BaseShowItemPrice,
-      fontWeight: 'bold',
     }"
     class="my-flex"
     style="justify-content: flex-start"
@@ -23,7 +22,7 @@
 
     <div
       class="showPrice"
-      :class="'is-size-' + (fontSize + 1)"
+      :class="'has-text-grey is-size-' + (fontSize + 1)"
       style="text-decoration: line-through; margin-left: 0.5rem"
     >
       {{ curr }}

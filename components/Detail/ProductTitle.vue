@@ -1,13 +1,10 @@
 <template>
   <div style="background-color: #fff">
-    <div
-      class="is-size-5 has-text-grey-dark"
-      style="padding: 0.5rem 1rem 0 1rem"
-    >
+    <div class="is-size-5 has-text-grey-dark" style="">
       {{ x.name }}
     </div>
 
-    <div class="review_summy" style="padding: 0 1rem">
+    <div class="review_summy" style="">
       <div
         v-if="!!x.review_count"
         class="item-ranking-review my-flex van-hairline--bottom"
@@ -20,15 +17,25 @@
           readonly
           style="margin-right: 10px"
         />
-        <a @click="scrollToId('#reviews')">{{ x.review_count }} ratings</a>
+        <a @click="$emit('scrollToId', '#reviews')"
+          >{{ x.review_count }} ratings</a
+        >
       </div>
 
-      <a v-else href="#leave_review" class="" style="color: #7bcbc1">
+      <a
+        v-else
+        class=""
+        @click="$emit('scrollToId', '#leave_review')"
+        :style="{
+          color: $store.state.S.mainColor + '!important',
+          cursor: 'pointer',
+        }"
+      >
         Be the first to review this product
       </a>
     </div>
 
-    <BaseShowItemPrice v-if="x" :x="x" style="padding: 0 1rem" />
+    <BaseShowItemPrice v-if="x" :x="x" :fontSize="4" style="" />
 
     <div
       v-if="x.short_description && x.short_description.html"
@@ -42,25 +49,7 @@
 <script>
 export default {
   props: ["x"],
-  methods: {
-    goReview() {
-      console.log("%c ????", "color:green;font-weight:bold");
-      console.log(JSON.stringify());
-
-      this.scrollToId("#reviews");
-    },
-    scrollToId(item) {
-      console.log("%c ?", "color:green;font-weight:bold");
-      console.log(JSON.stringify());
-
-      // let idItem = document.getElementById(item);
-      let anchor = this.$el.querySelector(item); //计算传进来的id到顶部的距离
-      this.$nextTick(() => {
-        // console.log(anchor.offsetTop)
-        window.scrollTo(0, anchor.offsetTop); //滚动距离因为导航栏固定定位130px的高度
-      });
-    },
-  },
+  methods: {},
 };
 </script>
 

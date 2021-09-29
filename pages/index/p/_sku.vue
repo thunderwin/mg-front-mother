@@ -8,7 +8,11 @@
     >
       <DetailSlider style="overflow: hidden" :x="x" />
 
-      <DetailProductTitle :x="x" />
+      <DetailProductTitle
+        @scrollToId="scrollToId"
+        style="padding: 0.5rem 1rem"
+        :x="x"
+      />
 
       <DetailCustomWrapper
         id="custom-option-wrapper"
@@ -16,6 +20,7 @@
         :option="x.options"
         ref="customOption"
         style="padding: 1rem; background-color: #fff"
+        @doAddCart="doAddCart"
       />
 
       <!-- <DetailAttList
@@ -52,19 +57,7 @@
 
       <van-col span="12">
         <div class="right">
-          <div class="is-size-4 has-text-grey-dark">
-            {{ x.name }}
-          </div>
-
-          <div class="yotpo bottomLine" data-yotpo-product-id="10"></div>
-
-          <DetailReviewIntro
-            :x="x"
-            @goReview="scrollToId('#reviews')"
-            @goAddReview="scrollToId('#leave_review')"
-          />
-
-          <BaseShowItemPrice v-if="x.price_range" :x="x" :fontSize="4" />
+          <DetailProductTitle @scrollToId="scrollToId" :x="x" />
 
           <div class="action-area" v-if="isSpecialItem === 'nomal'">
             <DetailCustomWrapper
@@ -72,6 +65,7 @@
               :option="x.options"
               ref="customOption"
               id="custom-option-wrapper"
+              @doAddCart="doAddCart"
             />
 
             <div v-if="x.__typename === 'BundleProduct'" class="is-bundle">
@@ -161,10 +155,10 @@
 
     <section
       class=""
-      id="leave_review"
+      id="reviews"
       style="margin-top: 30px; max-width: 600px; margin: 30px auto"
     >
-      <div class="">
+      <div id="leave_review">
         <div class="is-size-4 has-text-centered">Leave review</div>
         <client-only>
           <DetailReviewAddReviewSpace :sku="$route.params.sku" />
@@ -173,7 +167,7 @@
     </section>
 
     <van-goods-action
-      v-if="$device.isMobileOrTablet && isSpecialItem === 'nomal'"
+      v-if="$device.isMobileOrTablet"
       style="overflow: hidden; width: 100%; z-index: 1000"
       class="van-hairline--top bg-white"
     >
@@ -271,29 +265,9 @@ export default {
   },
 
   methods: {
-    async addToCart() {
-      let chosenOption; // 自定义属性
-
-      //1  判断是什么类型的产品
-      if (this.x.options && this.x.options.length > 0) {
-        console.log("%c this.$refs", "color:green;font-weight:bold");
-        console.log(this.$refs);
-
-        let checkRsult = this.$refs.customOption.checkIfChosen();
-
-        console.log("%c checkRsult", "color:green;font-weight:bold");
-        console.log(JSON.stringify(checkRsult));
-
-        if (!checkRsult) {
-          this.scrollToId("#custom-option-wrapper");
-          return;
-        }
-
-        chosenOption = this.$refs.customOption.chosen;
-
-        console.log("%c this.chosenOption", "color:green;font-weight:bold");
-        console.log(JSON.stringify(chosenOption));
-      }
+    async doAddCart(chosenOption) {
+      console.log("%c 执行加入", "color:green;font-weight:bold");
+      console.log(JSON.stringify());
 
       let payload = {
         qty: 1,
@@ -305,7 +279,8 @@ export default {
       }
 
       this.addingCart = true;
-      let addedResult = await this.$store.dispatch("cart/universalAddCart", {
+
+      await this.$store.dispatch("cart/universalAddCart", {
         payload,
         item: this.x,
       });
@@ -313,6 +288,30 @@ export default {
       this.addingCart = false;
 
       return true;
+    },
+    addToCart() {
+      let chosenOption; // 自定义属性
+
+      //1  判断是什么类型的产品
+      if (this.x.options && this.x.options.length > 0) {
+        // console.log("%c this.$refs", "color:green;font-weight:bold");
+        // console.log(this.$refs);
+
+        this.$formulate.submit("customOption");
+
+        // console.log("%c checkRsult", "color:green;font-weight:bold");
+        // console.log(JSON.stringify(checkRsult));
+
+        // if (!checkRsult) {
+        //   this.scrollToId("#custom-option-wrapper");
+        //   return;
+        // }
+
+        // chosenOption = this.$refs.customOption.chosen;
+
+        // console.log("%c this.chosenOption", "color:green;font-weight:bold");
+        // console.log(JSON.stringify(chosenOption));
+      }
     },
     buyNow() {},
 
@@ -345,7 +344,7 @@ export default {
 
     scrollToId(item) {
       console.log("%c ?", "color:green;font-weight:bold");
-      console.log(JSON.stringify());
+      console.log(JSON.stringify(item));
 
       // let idItem = document.getElementById(item);
       let anchor = this.$el.querySelector(item); //计算传进来的id到顶部的距离
