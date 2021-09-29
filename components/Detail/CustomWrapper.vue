@@ -8,6 +8,7 @@
     <client-only>
       <FormulateForm
         :form-errors="formErrors"
+        :errors="inputErrors"
         v-model="formValues"
         name="customOption"
         @submit="submit"
@@ -28,6 +29,7 @@
           validation="required"
           class="is-medium"
         />
+        <FormulateErrors />
       </FormulateForm>
     </client-only>
   </div>
@@ -40,22 +42,37 @@ export default {
     return {
       formValues: {},
       formErrors: [],
+      inputErrors: {},
       chosen: {},
       showErrorOptionId: "", // 显示错误的Id
     };
   },
-  mounted() {
-    this.option.forEach((x) => {
-      this.chosen[x.option_id] = "";
-    });
-
-    console.log("%c this.chosen", "color:green;font-weight:bold");
-    console.log(JSON.stringify(this.chosen));
-  },
+  mounted() {},
   methods: {
     submit(e) {
       console.log("%c e", "color:green;font-weight:bold");
       console.log(JSON.stringify(e));
+      if (Object.keys(e).length !== this.option.length) {
+        let inputErrors = {};
+        this.option.forEach((x) => {
+          inputErrors[JSON.stringify(x.option_id)] =
+            x.title + "This address doesn’t appear valids";
+        });
+
+        console.log("%c inputErrors", "color:green;font-weight:bold");
+        console.log(JSON.stringify(inputErrors));
+
+        this.inputErrors = inputErrors;
+        this.formErrors = ["Options all required"];
+
+        // this.$formulate.handle(
+        //   {
+        //     inputErrors: inputErrors,
+        //   },
+        //   "customOption"
+        // );
+        return;
+      }
       this.$emit("doAddCart", e);
     },
     chosenOption(option_id, option_type_id) {
@@ -83,6 +100,10 @@ export default {
 
 <style lang="scss">
 .choose-option {
+  .formulate-input .formulate-input-element {
+    width: 100%;
+    max-width: 25rem;
+  }
   .formulate-input-label {
     text-transform: capitalize;
   }
@@ -98,9 +119,10 @@ export default {
   }
   .formulate-input-group-item {
     background-color: #eee;
-    margin-right: 1rem;
+    margin-right: 0.6rem;
     border: 1px solid #eee;
     border-radius: 4px;
+    padding: 0 0.5rem;
 
     .formulate-input-element--radio {
       display: none;
@@ -109,7 +131,8 @@ export default {
     }
     .formulate-input-label--after {
       text-align: center;
-      width: 70px;
+
+      min-width: 40px;
       height: 35px;
       line-height: 35px;
       margin-left: 0;

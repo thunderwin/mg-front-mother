@@ -57,7 +57,11 @@
 
       <van-col span="12">
         <div class="right">
-          <DetailProductTitle @scrollToId="scrollToId" :x="x" />
+          <DetailProductTitle
+            @scrollToId="scrollToId"
+            :x="x"
+            style="margin-bottom: 1rem"
+          />
 
           <div class="action-area" v-if="isSpecialItem === 'nomal'">
             <DetailCustomWrapper
@@ -285,13 +289,12 @@ export default {
         item: this.x,
       });
 
+      this.$formulate.reset("customOption");
       this.addingCart = false;
 
       return true;
     },
     addToCart() {
-      let chosenOption; // 自定义属性
-
       //1  判断是什么类型的产品
       if (this.x.options && this.x.options.length > 0) {
         // console.log("%c this.$refs", "color:green;font-weight:bold");
