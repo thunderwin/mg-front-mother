@@ -322,12 +322,15 @@ export default {
       console.log(JSON.stringify(pageInfo.total_pages));
       console.log("%c 是否完成", "color:green;font-weight:bold");
       console.log(JSON.stringify(this.finished));
+
+      let items = r.categoryList[0].products.items;
+
+      this.list = this.list.concat(items);
+
       if (pageInfo.current_page === pageInfo.total_pages) {
         this.finished = true;
         return;
       }
-
-      this.list = this.list.concat(r.categoryList[0].products.items);
     },
 
     async loadMore(e) {
