@@ -9,19 +9,20 @@
       />
     </van-cell-group>
 
-    <van-cell-group>
-      <!-- <van-cell title="Size" @click="showDynamic('Size')" is-link /> -->
+    <!-- <van-cell-group>
+      <van-cell title="Size" @click="showDynamic('Size')" is-link />
 
-      <!-- <van-cell-group>
+      <van-cell-group>
         <van-cell title="Shipping" @click="showDynamic('Shipping')" is-link />
-      </van-cell-group> -->
+      </van-cell-group>
+
       <van-cell
         title="Description"
         @click="showDynamic('Desc')"
         is-link
         value="Description"
       />
-    </van-cell-group>
+    </van-cell-group> -->
 
     <van-popup
       closeable

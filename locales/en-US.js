@@ -11,7 +11,7 @@ export default {
     confirm: "Confirm",
     cancel: "Cancel",
     is_required: " is required",
-    shopping_cart: "Shopping cart",
+    shopping_cart: "Bag",
     follow_us: "Follow us",
     category: "Category",
     my_account: "My account",

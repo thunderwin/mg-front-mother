@@ -1,6 +1,11 @@
 <template>
-  <div style="background-color: #fafafa">
-    <div v-if="$device.isMobileOrTablet" class="container" gutter="30">
+  <div>
+    <div
+      v-if="$device.isMobileOrTablet"
+      class="container"
+      gutter="30"
+      style="background-color: #fafafa"
+    >
       <DetailSlider style="overflow: hidden" :x="x" />
 
       <DetailProductTitle :x="x" />
@@ -21,25 +26,32 @@
       /> -->
 
       <DetailPopGroup :x="x" />
+
+      <div class="detail_desc" style="padding: 1rem; background-color: #fff">
+        <div
+          style=""
+          id="review"
+          v-if="x.description"
+          class="desc"
+          v-html="x.description.html"
+        ></div>
+      </div>
     </div>
 
     <van-row
       v-if="$device.isDesktop"
       class="container"
       gutter="30"
-      style="margin-top: 1rem"
+      style="margin-top: 1.5rem"
     >
       <van-col span="12">
-        <div
-          class="detail_pc shadow"
-          style="margin-bottom: 2rem; margin-top: 2rem"
-        >
+        <div class="detail_pc" style="margin-bottom: 2rem; margin-top: 8px">
           <DetailSlider :x="x" />
         </div>
       </van-col>
 
       <van-col span="12">
-        <div class="right" style="padding: 1rem">
+        <div class="right">
           <div class="is-size-4 has-text-grey-dark">
             {{ x.name }}
           </div>
@@ -70,14 +82,14 @@
               <!-- <button class="button" @click="buyNow">Buy now</button> -->
 
               <button
-                class="button is-nomal"
+                class="button is-medium"
                 :class="addingCart ? 'is-loading' : ''"
                 :style="{
                   backgroundColor: $store.state.S.mainColor,
                 }"
                 @click="addToCart"
               >
-                Add to cart
+                Add to bag
               </button>
             </div>
           </div>
@@ -173,7 +185,7 @@
         type="danger"
         @click="addToCart"
         :loading="addingCart"
-        text="Add to Cart"
+        text="Add to Bag"
         style="font-weight: bold"
       />
     </van-goods-action>
